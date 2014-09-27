@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+  <h:head>
+    <title>Testing Formal</title>
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/my-theme.css" />
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/style-jstree.min.css" />
+    <script type="text/javascript" src="#{request.contextPath}/js/jquery-2.1.1.min.js" ></script>
+    <script type="text/javascript" src="#{request.contextPath}/js/bootstrap.js" ></script>
+    <script type="text/javascript" src="#{request.contextPath}/js/bootstrap-filestyle.js" ></script>
+    <script type="text/javascript" src="#{request.contextPath}/js/jstree.min.js" ></script>
+    <link rel="shortcut icon" type="image/png" href="#{request.contextPath}/img/favicon.png" />
+
+  </h:head>
+  <h:body>
+    <div class="container">
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">Testing Formal</a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li><a href="./index.xhtml">Home</a></li>
+              <li class="active"><a href="#">Codigo Fuente</a></li>
+
+            </ul>
+
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+      <h:form id="form" enctype="multipart/form-data">
+
+        <div class="blanco columna1" style="overflow-y: hidden;">
+        
+          <ui:include src="./select_proyecto/partial_select_files.xhtml" /> 
+
+        </div>
+
+        <div class="columna2" style="box-shadow: inset 0 0 20px black">
+          <h:inputTextarea value="#{fileBean.archivoContenido}"
+                           readonly="true"
+                           id="codigo_fuente"
+                           style="resize: none; border: solid gray 1px; border-radius: 3px; height: 90%; width: 90%; top: 3%; left: 5%; position: relative; box-shadow: 0 0 10px rgba(50,50,50,0.8); padding: 1%; overflow-y: auto"/>
+        </div>
+        <div class="blanco columna3" style="">
+          <div style="position: absolute; top: 90px; left: 5%; width: 90%; ">
+            <a href="./diagrama_flujo.xhtml" class="btn btn-primary btn-block">Ver Diagrama de Flujo</a>
+          </div>
+        </div>
+
+        <script type="text/javascript">
+          $(function() {
+            $('#metodo_tree').jstree({
+              "types": {
+                "default": {
+                  "valid_children": ["default", "file"]
+                },
+                "file": {
+                  "icon": "glyphicon glyphicon-file",
+                  "valid_children": []
+                }
+              }
+            });
+          });
+          $(function(){
+            $("#metodo_tree").height($(".columna1").height() - $(".columna1 div:first-child").height());
+          });
+          $( window ).resize(function() {
+            $("#metodo_tree").height($(".columna1").height() - $(".columna1 div:first-child").height());
+          });
+        </script>
+
+
+      </h:form>
+    </div>
+  </h:body>
+</html>
+
