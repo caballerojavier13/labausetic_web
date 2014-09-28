@@ -1,0 +1,147 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Aug 29, 2014, 9:52:21 PM
+    Author     : javier
+*/
+
+body{
+  background: rgba(150,150,150,0.1);
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+}
+
+.ui-loader{
+  display: none;
+}
+
+.blanco{
+  background: white;
+}
+
+.borde1{
+  border: solid 1px black;  
+}
+
+
+@media (max-width: 768px) {
+  .columna1{
+    position: absolute;
+    top: 51px;
+    left: 0;
+    width: 80%;
+    height: 100%;
+    z-index: 100;
+    padding-top: 20px;
+    box-shadow: 0 0 20px gray;
+}
+  .columna2{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%; 
+    padding-top: 70px;
+    
+  }
+  .columna2 textarea{
+    position: fixed; 
+    resize: none; 
+    border: solid rgb(226, 226, 226) 1px; 
+    border-radius: 6px; 
+    height: 90%; 
+    width: 90%; 
+    top: 76px; 
+    left: 5%;     
+    padding: 1%; 
+    overflow-y: auto
+  }
+}
+@media (min-width: 768px) {
+  .columna1{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20%; 
+    padding-top: 70px;
+    /* min-height: 600px; */
+    overflow: hidden;
+  }
+  .columna2{
+    position: absolute;
+    top: 0;
+    left: 20%;
+    width: 60%; 
+    height: 100%; 
+    padding-top: 70px;
+    min-height: 600px;
+    box-shadow: inset 0 0 20px black;
+  
+    overflow-y: hidden;
+}
+  .columna2 textarea{
+    resize: none; 
+    border: solid gray 1px; 
+    border-radius: 3px; 
+    height: 90%; 
+    width: 90%;  
+    top:5%;
+    left: 5%; 
+    position: relative; 
+    box-shadow: 0 0 10px rgba(50,50,50,0.8);
+    padding: 1%; 
+    overflow-y: auto;
+  }
+  .columna3{
+    position: absolute;
+    top: 0;
+    left: 80%;
+    width: 20%; 
+    height: 100%; 
+    padding-top: 70px;
+    min-height: 600px;
+  }
+}
+
+.divisor{
+  position: relative;
+  left: 5%;
+  height: 1px;
+  width: 90%;
+  box-shadow: 0 0 5px black;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.fila{
+  position: relative;
+  display: inline-block;
+
+}
+
+.nav .active_my{
+  border-bottom: solid gray 2px;
+}
+.nav .active_my:hover{
+  background: none;
+  border-bottom: solid gray 2px;
+}
+.navbar-nav_my li:hover{
+  border-bottom: solid rgb(199, 199, 199) 2px;
+  background: #FFFFFF;
+}
+
+.header-mobile{
+  height: 46px;
+  line-height: 46px;
+}
+
+.listviewSeparado li{
+  margin-bottom: 10px;
+  border: solid 2px rgb(204, 204, 204);
+  border-left: none;
+  border-right: none;
+}

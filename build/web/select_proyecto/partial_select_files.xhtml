@@ -1,0 +1,48 @@
+<ui:composition 
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  <div>
+    <div class="fila" style="width: 90%; left: 5%; z-index: 2; ">
+      <h:inputFile id="file" required="true" value="#{fileBean.archivoNombre}" class="filestyle" >
+        <f:ajax event="change" />
+      </h:inputFile>
+      <h:commandButton value="Subir"
+                       action="#{fileBean.subirArchivo()}"
+                       class="btn btn-primary btn-block"
+                       style="margin-top: 5px;margin-bottom: 5px;">
+        <f:ajax event="click" render="@all" />
+      </h:commandButton>
+
+    </div>
+
+    <div class="divisor fila" style=" z-index: 2;"></div>
+  </div>
+
+  <div id="metodo_tree" class=""  style="position: absolute; width: 100%; overflow: auto; height: auto" >
+    <c:if test="#{fileBean.clase != null}">
+      <ul style="">
+        <li data-jstree='{"opened":true,"selected":true}'>
+          <h:commandLink action="#{fileBean.mostrarClase()}" >
+            #{fileBean.clase.nombre}
+            <f:ajax event="click" render="codigo_fuente" />
+          </h:commandLink>
+          <ul>
+            <c:forEach var="item" items="#{fileBean.metodos}">
+              <li data-jstree='{"icon":"./img/java_icon.png"}' >
+                <h:commandLink action="#{fileBean.mostrarMetodo(item.indice)}" >
+                  #{item.nombre}
+                  <f:ajax event="click" render="codigo_fuente" />
+                </h:commandLink>
+              </li>
+            </c:forEach>
+          </ul>
+        </li>
+      </ul>
+
+    </c:if>
+  </div>
+
+</ui:composition>
