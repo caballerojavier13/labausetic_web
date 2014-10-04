@@ -66,7 +66,7 @@ public class GeneradorDiagramaFlujo {
       resultado.add(inicio);
       resultado = reverseNodos(resultado);
     } catch (Exception e) {
-      e.printStackTrace();
+      
     }
 
     return resultado;

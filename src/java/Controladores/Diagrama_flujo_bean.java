@@ -13,12 +13,10 @@ import DTO.Metodo;
 import DTO.Sentencia;
 import DiagramaFlujo.GeneradorDiagramaFlujo;
 import java.util.List;
-import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import static javax.swing.text.html.HTML.Attribute.TARGET;
 
 /**
  *
@@ -34,8 +32,11 @@ public class Diagrama_flujo_bean {
 
   public Diagrama_flujo_bean() {
     try {
+   
       refMetodo = ((FileBean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("fileBean")).getRefSelectedMetodo();
+    
     } catch (Exception e) {
+      
       FacesContext facesContext = FacesContext.getCurrentInstance();
 
       ExternalContext ec = facesContext.getExternalContext();

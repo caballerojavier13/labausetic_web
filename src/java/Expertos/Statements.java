@@ -24,6 +24,7 @@ import DiagramaFlujo.TipoNodo;
 import static Expertos.Statements.ForStmt;
 import static Expertos.Statements.getIndexStatement;
 import japa.parser.ast.body.MethodDeclaration;
+import japa.parser.ast.expr.Expression;
 import japa.parser.ast.stmt.AssertStmt;
 import japa.parser.ast.stmt.BlockStmt;
 import japa.parser.ast.stmt.BreakStmt;
@@ -419,10 +420,61 @@ public class Statements {
         }
         break;
       case ForStmt:
-        //return "FOR";
+        ForStmt forstmt = ((ForStmt) s);
+        Nodo compare = new Nodo(Id);
+        compare.setTexto(forstmt.getCompare().toString());
+
+        compare.setPermiteAlt(true);
+        compare.setSiguienteAlt(fin);
+        compare.setTipo(TipoNodo.CONDITION);
+
+        Id++;
+
+        List<Nodo> nodosUpdate = getNodosExpresion(forstmt.getUpdate(), compare, Id);
+        Id += nodosUpdate.size();
+
+        List<Nodo> nodosBody = getNodos(forstmt.getBody(), nodosUpdate.get(0), Id);
+        Id += nodosBody.size();
+
+        compare.setSiguiente(nodosBody.get(0));
+
+        List<Nodo> nodosInit = getNodosExpresion(forstmt.getInit(), compare, Id);
+        Id += nodosInit.size();
+
+        for (Nodo nodo : nodosInit) {
+          resultado.add(nodo);
+        }
+        resultado.add(compare);
+
+        for (Nodo nodo : nodosBody) {
+          resultado.add(nodo);
+        }
+
+        for (Nodo nodo : nodosUpdate) {
+          resultado.add(nodo);
+        }
+
         break;
       case ForeachStmt:
-        //return "FOREACH";
+        ForeachStmt foreachstmt = ((ForeachStmt) s);
+
+        n1 = new Nodo(Id);
+
+        n1.setTexto(foreachstmt.getVariable().getVars().get(0).toString() + ":" + foreachstmt.getIterable().toString()+".next()");
+        n1.setTipo(TipoNodo.CONDITION);
+        n1.setSiguienteAlt(fin);
+        n1.setPermiteAlt(true);
+
+        nodos = getNodos(foreachstmt.getBody(), n1, Id);
+        
+        n1.setSiguiente(nodos.get(0));
+        
+        resultado.add(n1);
+
+        for (Nodo nodo : nodos) {
+          resultado.add(nodo);
+        }
+
         break;
       case IfStmt:
         try {
@@ -483,11 +535,11 @@ public class Statements {
         TryStmt stmtTry = (TryStmt) s;
 
         finTemp = fin;
-      
+
         List<Nodo> finallyNodos = getNodos(stmtTry.getFinallyBlock(), fin, Id);
 
         Id = Id + finallyNodos.size();
-        if(finallyNodos.size() > 0){
+        if (finallyNodos.size() > 0) {
           finTemp = finallyNodos.get(0);
         }
         List<Nodo> tryNodos = new ArrayList();
@@ -501,28 +553,30 @@ public class Statements {
             tryNodos.add(nodo);
             Id++;
           }
+          if (nodos.size() > 0) {
+            finTemp = nodos.get(0);
+          }
 
-          finTemp = nodos.get(0);
         }
-        
-        if(finallyNodos.size() > 0){
+
+        if (finallyNodos.size() > 0) {
           finTemp = finallyNodos.get(0);
-        }else{
+        } else {
           finTemp = fin;
         }
         List<CatchClause> catchs = stmtTry.getCatchs();
-        
+
         List<Nodo> catchNodos = new ArrayList();
-        
+
         Nodo finAlt = null;
-        
+
         for (int i = 0; i < catchs.size(); i++) {
           nodos = getNodosCatch(catchs.get(i), finTemp, null, Id);
 
           Id = Id + nodos.size();
           if (nodos.size() > 0) {
             setNullSiguiente(catchNodos, nodos.get(0), true);
-            
+
             for (Nodo nodo : nodos) {
               catchNodos.add(nodo);
             }
@@ -530,9 +584,9 @@ public class Statements {
           }
 
         }
-        
+
         setNullSiguiente(catchNodos, tryNodos.get(0), true);
-        
+
         resultado.addAll(catchNodos);
         resultado.addAll(tryNodos);
         resultado.addAll(finallyNodos);
@@ -622,9 +676,9 @@ public class Statements {
 
     resultado.add(excepcion);
     Id++;
-    
-    List<Nodo> nodos = getNodos(s.getCatchBlock(),fin,Id);
-    
+
+    List<Nodo> nodos = getNodos(s.getCatchBlock(), fin, Id);
+
     resultado.addAll(nodos);
 
     excepcion.setSiguiente(nodos.get(0));
@@ -716,6 +770,22 @@ public class Statements {
       }
     }
 
+  }
+
+  private static List<Nodo> getNodosExpresion(List<Expression> listado, Nodo fin, int Id) {
+    Nodo finTemp = fin;
+    List<Nodo> Resultado = new ArrayList();
+    for (int i = listado.size() - 1; i > -1; i--) {
+      Nodo n = new Nodo(Id);
+      n.setTipo(TipoNodo.OPERATION);
+      n.setTexto(listado.get(i).toString());
+      n.setSiguiente(finTemp);
+      Resultado.add(n);
+      finTemp = n;
+      Id++;
+    }
+
+    return Resultado;
   }
 
 }

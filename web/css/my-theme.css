@@ -7,11 +7,10 @@ and open the template in the editor.
     Created on : Aug 29, 2014, 9:52:21 PM
     Author     : javier
 */
-
 body{
   background: rgba(150,150,150,0.1);
   width: 100%;
-  padding: 0;
+  padding: 100px;
   overflow: hidden;
 }
 
@@ -26,19 +25,22 @@ body{
 .borde1{
   border: solid 1px black;  
 }
-
+@media (max-width: 325px) {
+  #mobile_menu h1{
+    font-size: 10px;
+  }
+}
 
 @media (max-width: 768px) {
   .columna1{
     position: absolute;
     top: 51px;
-    left: 0;
+    right: 100%;
     width: 80%;
     height: 100%;
     z-index: 100;
     padding-top: 20px;
-    box-shadow: 0 0 20px gray;
-}
+  }
   .columna2{
     position: fixed;
     top: 0;
@@ -46,29 +48,38 @@ body{
     width: 100%; 
     height: 100%; 
     padding-top: 70px;
-    
+
   }
   .columna2 textarea{
     position: fixed; 
     resize: none; 
     border: solid rgb(226, 226, 226) 1px; 
     border-radius: 6px; 
-    height: 90%; 
+
     width: 90%; 
     top: 76px; 
+    bottom: 76px;
     left: 5%;     
     padding: 1%; 
     overflow-y: auto
+  }
+  .columna3{
+    position: absolute;
+    right: -80%;
+    top:0px;
+    width: 80%;
+    height: 100%;
+    z-index: 100;
+    padding-top: 0px;
   }
 }
 @media (min-width: 768px) {
   .columna1{
     position: absolute;
     top: 0;
-    left: 0;
+    left:0;
     width: 20%; 
     padding-top: 70px;
-    /* min-height: 600px; */
     overflow: hidden;
   }
   .columna2{
@@ -80,9 +91,9 @@ body{
     padding-top: 70px;
     min-height: 600px;
     box-shadow: inset 0 0 20px black;
-  
+
     overflow-y: hidden;
-}
+  }
   .columna2 textarea{
     resize: none; 
     border: solid gray 1px; 
