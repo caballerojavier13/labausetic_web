@@ -376,26 +376,42 @@ public class Statements {
         break;
       case BlockStmt:
         List<Statement> stmts = ((BlockStmt) s).getStmts();
-
-        for (Statement tempS : stmts) {
-          if (getIndexStatement(tempS) < 1) {
-            String nombre = ((ExpressionStmt) tempS).getExpression().toString();
-            n1 = new Nodo(Id);
-            n1.setSiguiente(fin);
-            n1.setTipo(TipoNodo.OPERATION);
-            n1.setTexto(nombre);
-            resultado.add(n1);
-            Id++;
-          } else {
-            resultado = getNodos(tempS, fin, Id);
+        if (stmts != null) {
+          for (Statement tempS : stmts) {
+            if (getIndexStatement(tempS) < 1) {
+              String nombre = ((ExpressionStmt) tempS).getExpression().toString();
+              n1 = new Nodo(Id);
+              n1.setSiguiente(fin);
+              n1.setTipo(TipoNodo.OPERATION);
+              n1.setTexto(nombre);
+              resultado.add(n1);
+              Id++;
+            } else {
+              resultado = getNodos(tempS, fin, Id);
+            }
           }
+        } else {
+          n1 = new Nodo(Id);
+          n1.setSiguiente(fin);
+          n1.setTipo(TipoNodo.OPERATION);
+          n1.setTexto("//Vacio");
+          resultado.add(n1);
         }
         break;
       case BreakStmt:
-        //return "BREAK";
+        n1 = new Nodo(Id);
+        n1.setSiguiente(fin);
+        n1.setTipo(TipoNodo.OPERATION);
+        n1.setTexto("Break");
+        resultado.add(n1);
         break;
       case ContinueStmt:
-        //return "CONTINUE";
+        n1 = new Nodo(Id);
+        n1.setSiguiente(fin);
+        n1.setTipo(TipoNodo.OPERATION);
+        n1.setTexto("Continue");
+        resultado.add(n1);
+        ;
         break;
 
       case DoStmt:
@@ -460,15 +476,15 @@ public class Statements {
 
         n1 = new Nodo(Id);
 
-        n1.setTexto(foreachstmt.getVariable().getVars().get(0).toString() + ":" + foreachstmt.getIterable().toString()+".next()");
+        n1.setTexto(foreachstmt.getVariable().getVars().get(0).toString() + ":" + foreachstmt.getIterable().toString() + ".next()");
         n1.setTipo(TipoNodo.CONDITION);
         n1.setSiguienteAlt(fin);
         n1.setPermiteAlt(true);
-
+        Id++;
         nodos = getNodos(foreachstmt.getBody(), n1, Id);
-        
+
         n1.setSiguiente(nodos.get(0));
-        
+
         resultado.add(n1);
 
         for (Nodo nodo : nodos) {
@@ -481,40 +497,55 @@ public class Statements {
           n1 = new Nodo(Id);
           n1.setPermiteAlt(true);
 
-          n1.setTexto(((IfStmt) s).getCondition().toString());
+          n1.setTexto(((IfStmt) s).getCondition().toString().trim());
 
           n1.setTipo(TipoNodo.CONDITION);
 
           Id++;
           resultado.add(n1);
+
           nodos = getNodos(((IfStmt) s).getThenStmt(), fin, Id);
-          n1.setSiguiente(nodos.get(0));
-          for (Nodo nodo : nodos) {
-            resultado.add(nodo);
-            Id++;
+
+          if (nodos.size() > 0) {
+            n1.setSiguiente(nodos.get(0));
+            for (Nodo nodo : nodos) {
+              resultado.add(nodo);
+              Id++;
+            }
+          } else {
+            n2 = new Nodo(Id);
+            n2.setTipo(TipoNodo.OPERATION);
+            n2.setTexto("//Then Vacio");
+            n2.setSiguiente(fin);
+
+            n1.setSiguiente(n2);
           }
+
           nodos = getNodos(((IfStmt) s).getElseStmt(), fin, Id);
-          n1.setSiguienteAlt(nodos.get(0));
-          for (Nodo nodo : nodos) {
-            resultado.add(nodo);
-            Id++;
+
+          if (nodos.size() > 0) {
+            n1.setSiguienteAlt(nodos.get(0));
+            for (Nodo nodo : nodos) {
+              resultado.add(nodo);
+              Id++;
+            }
+          } else {
+            n1.setSiguienteAlt(fin);
           }
         } catch (Exception e) {
-
+          e.printStackTrace();
         }
         break;
       case ReturnStmt:
 
-        if (s instanceof ReturnStmt) {
-          n1 = new Nodo(Id);
-          n1.setTexto("RETURN");
+        n1 = new Nodo(Id);
+        n1.setTexto("RETURN");
 
-          n1.setTipo(TipoNodo.OPERATION);
+        n1.setTipo(TipoNodo.OPERATION);
 
-          n1.setSiguiente(fin);
+        n1.setSiguiente(fin);
 
-          resultado.add(n1);
-        }
+        resultado.add(n1);
         break;
       case SwitchStmt:
         try {
@@ -528,7 +559,14 @@ public class Statements {
         }
         break;
       case ThrowStmt:
-        //return "THROW";
+        n1 = new Nodo(Id);
+        n1.setTexto(((ThrowStmt) s).getExpr().toString());
+
+        n1.setTipo(TipoNodo.OPERATION);
+
+        n1.setSiguiente(fin);
+
+        resultado.add(n1);
         break;
       case TryStmt:
 
@@ -593,7 +631,14 @@ public class Statements {
 
         break;
       case TypeDeclarationStmt:
-        //return "DECLARACION VARIABLE";
+        n1 = new Nodo(Id);
+        n1.setTexto(((TypeDeclarationStmt) s).toString());
+
+        n1.setTipo(TipoNodo.OPERATION);
+
+        n1.setSiguiente(fin);
+
+        resultado.add(n1);
         break;
       case WhileStmt:
         try {
@@ -617,33 +662,35 @@ public class Statements {
         }
         break;
       case EmptyStmt:
-        try {
-          n1 = new Nodo(Id);
 
-          n1.setTexto("Empty");
+        n1 = new Nodo(Id);
 
-          n1.setTipo(TipoNodo.OPERATION);
-          n1.setSiguiente(fin);
-          resultado.add(n1);
-        } catch (Exception e) {
+        n1.setTexto("Empty");
 
-        }
+        n1.setTipo(TipoNodo.OPERATION);
+        n1.setSiguiente(fin);
+        resultado.add(n1);
+
         break;
       case ExplicitConstructorInvocationStmt:
-        //return "LLAMADA_CONSTRUCTOR";
+        System.out.println("Llamada a constructor");
+        n1 = new Nodo(Id);
+        n1.setTexto(((ExplicitConstructorInvocationStmt) s).getExpr().toString());
+
+        n1.setTipo(TipoNodo.OPERATION);
+
+        n1.setSiguiente(fin);
+
+        resultado.add(n1);
         break;
       case ExpressionStmt:
-        try {
-          n1 = new Nodo(Id);
+        n1 = new Nodo(Id);
 
-          n1.setTexto(((ExpressionStmt) s).getExpression().toString());
+        n1.setTexto(((ExpressionStmt) s).getExpression().toString());
 
-          n1.setTipo(TipoNodo.OPERATION);
-          n1.setSiguiente(fin);
-          resultado.add(n1);
-        } catch (Exception e) {
-
-        }
+        n1.setTipo(TipoNodo.OPERATION);
+        n1.setSiguiente(fin);
+        resultado.add(n1);
         break;
       case LabeledStmt:
         //return "ETIQUETA";
@@ -652,9 +699,7 @@ public class Statements {
         //return "SINCRONIZACION";
         break;
       default:
-        //return "Nada";
         break;
-
     }
     return resultado;
   }
@@ -674,18 +719,18 @@ public class Statements {
 
     Nodo excepcion = new Nodo(Id);
 
-    resultado.add(excepcion);
     Id++;
 
     List<Nodo> nodos = getNodos(s.getCatchBlock(), fin, Id);
-
-    resultado.addAll(nodos);
 
     excepcion.setSiguiente(nodos.get(0));
     excepcion.setTexto(s.getExcept().getType().toString());
     excepcion.setTipo(TipoNodo.CONDITION);
     excepcion.setPermiteAlt(true);
     excepcion.setSiguienteAlt(finAlt);
+    resultado.add(excepcion);
+
+    resultado.addAll(nodos);
 
     return resultado;
   }
@@ -729,6 +774,7 @@ public class Statements {
         List<Statement> stmts = switchEntryStmt.getStmts();
 
         Nodo finTemp2 = fin;
+        label.setSiguiente(finTemp2);
         for (int j = stmts.size() - 1; j > -1; j--) {
           List<Nodo> nodos = getNodos(stmts.get(j), finTemp2, Id);
           if (nodos.size() > 0) {
