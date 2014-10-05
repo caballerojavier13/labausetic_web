@@ -1,10 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
   <h:head>
     <title>Testing Formal</title>
     <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/bootstrap.css" />
@@ -14,61 +11,32 @@
     <script type="text/javascript" src="#{request.contextPath}/js/public/bootstrap.js" ></script>
     <script type="text/javascript" src="#{request.contextPath}/js/public/raphael-min.js" ></script>
     <script type="text/javascript" src="#{request.contextPath}/js/public/flowchart-1.3.4.min.js" ></script>
+
+    <script type="text/javascript" src="#{request.contextPath}/js/privated/diagrama_flujo.js" ></script>
+    <script type="text/javascript" src="#{request.contextPath}/js/public/modernizr-latest.js" ></script>
+    <script type="text/javascript" src="#{request.contextPath}/js/public/jquery-scrollable.js" ></script>
+    <script type="text/javascript" src="#{request.contextPath}/js/public/e-smart-zoom-jquery.js" ></script>
+
+
+
     <link rel="shortcut icon" type="image/png" href="#{request.contextPath}/img/favicon.png" />
     <style>
       body{
-        overflow: auto;
+        overflow: hidden;
+        height: 100%;
+        padding: 0;
       }
     </style>
-    <script>
-
-      window.onload = function() {
-        var btn = document.getElementById("run"),
-                cd = document.getElementById("code"),
-                chart;
-
-        (btn.onclick = function() {
-          var code = cd.value;
-
-          if (chart) {
-            chart.clean();
-          }
-
-          chart = flowchart.parse(code);
-          chart.drawSVG('canvas', {
-            'x': 0,
-            'y': 0,
-            'line-width': 2,
-            'text-margin': 5,
-            'font-size': 12,
-            'font': 'normal',
-            'font-family': 'Helvetica',
-            'font-weight': 'normal',
-            'font-color': 'black',
-            'line-color': 'darkgray',
-            'element-color': 'black',
-            'fill': 'white',
-            'yes-text': 'Si',
-            'no-text': 'No',
-            'arrow-end': 'block',
-            'symbols': {
-              'start': {
-                'font-color': 'black',
-                'element-color': 'black',
-                'fill': 'white'
-              },
-              'end': {
-                'class': 'end-element'
-              }
-            }
-          });
-        })();
-
-      };
+    <script type="text/javascript">
+      jQuery(function($) {
+        if (!Modernizr.touch) { // if not a smartphone
+          debiki.Utterscroll.enable();
+        }
+      });
     </script>
   </h:head>
   <h:body>
-    <div class="container">
+    <div class="container" style="overflow: hidden">
       <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container-fluid">
           <!-- Brand and toggle get grouped for better mobile display -->
@@ -94,17 +62,32 @@
         </div><!-- /.container-fluid -->
       </nav>
 
+      <div style="position: fixed; top: 0px;left: 5%;width: 90%; height: 100%; padding-top: 70px; padding: 20px; overflow: hidden">
 
+        <div>
+          <textarea id="code" style="width: 100%; resize: none;display: none; border-radius: 5px; border: none; box-shadow: 0 0 5px gray;" rows="11">
+            #{diagrama_flujo_bean.dibujarDiagrama()}
+          </textarea>
+          <button id="run" type="button" class="btn btn-default" style="width: 200px; display: none; margin-top: 10px; ">Run</button>
+        </div>
+
+        <div id="canvas">
+
+        </div>
+      </div>
+
+      <h:link outcome="select_proyecto" class="btn btn-default back_button" value="">
+        <span class="glyphicon glyphicon-chevron-left"></span> Atras  
+      </h:link>
     </div>
 
-    <div style="position: absolute; top: 100px;left: 10%;width: 80%;">
-      
-      <div><textarea id="code" style="width: 100%; resize: none;display: none; border-radius: 5px; border: none; box-shadow: 0 0 5px gray;" rows="11">
-#{diagrama_flujo_bean.dibujarDiagrama()}
-        </textarea></div>
-      <div><button id="run" type="button" class="btn btn-default" style="width: 200px; display: none; margin-top: 10px; ">Run</button></div>
-      <div id="canvas" style="width: 90%; left: 10%; height: 100%; padding-bottom: 30px;margin-bottom: 30px"></div>
-    </div>
+
+    <script type="text/javascript" src="#{request.contextPath}/js/public/debiki-utterscroll.js" ></script>    
+    <script>
+      $(document).ready(function() {
+        $('#canvas svg').smartZoom({'containerClass': 'zoomableContainer'});
+      });
+    </script>
   </h:body>
 </html>
 

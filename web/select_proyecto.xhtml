@@ -18,6 +18,7 @@
     <script type="text/javascript" src="#{request.contextPath}/js/public/bootstrap-filestyle.js" ></script>
     <script type="text/javascript" src="#{request.contextPath}/js/public/jstree.min.js" ></script>    
     <script type="text/javascript" src="#{request.contextPath}/js/public/perfect-scrollbar.min.js" ></script>    
+
     <link rel="shortcut icon" type="image/png" href="#{request.contextPath}/img/favicon.png" />
 
   </h:head>
@@ -68,7 +69,7 @@
             <h:link class="btn btn-primary btn-block" outcome="diagrama_flujo">Ver Diagrama de Flujo</h:link>
           </div>
         </div>
-        <nav class="navbar navbar-default navbar-fixed-bottom visible-xs" role="navigation">
+        <nav class="navbar navbar-default navbar-fixed-bottom visible-xs visible-sm" role="navigation">
           <div class="container-fluid">
 
             <div class="col-xs-6">
@@ -84,85 +85,10 @@
             </div>
           </div>
         </nav>
-        <script type="text/javascript">
-          $(function() {
-            $('#metodo_tree').jstree({
-              "types": {
-                "default": {
-                  "valid_children": ["default", "file"]
-                },
-                "file": {
-                  "icon": "glyphicon glyphicon-file",
-                  "valid_children": []
-                }
-              }
-            });
-          });
-          $(function() {
-            $(".columna1").height($(window).height() - $("body .container nav[1]").height());
-
-            if ($(window).width() > 768) {
-              $("#metodo_tree").css("top", $(".columna1 div:first-child").height() + $("body .container nav[1]").height() + 70);
-              $("#metodo_tree").height($(window).height() - parseInt($("#metodo_tree").css("top")));
-            } else {
-              $("#metodo_tree").css("top", $(".columna1 div:first-child").height() + $("body .container nav[1]").height() + 20);
-              $("#metodo_tree").height($(".columna1").height() - parseInt($("#metodo_tree").css("top")) - 100);
-            }
-
-          });
-          $(window).resize(function() {
-            $(".columna1").height($(window).height() - $("body .container nav[1]").height());
-            if ($(window).width() > 768) {
-              $("#metodo_tree").css("top", $(".columna1 div:first-child").height() + $("body .container nav[1]").height() + 70);
-              $("#metodo_tree").height($(window).height() - parseInt($("#metodo_tree").css("top")));
-            } else {
-              $("#metodo_tree").css("top", $(".columna1 div:first-child").height() + $("body .container nav[1]").height() + 20);
-              $("#metodo_tree").height($(".columna1").height() - parseInt($("#metodo_tree").css("top")) - 100);
-            }
-
-          });
-        </script>
-
-        <script type="text/javascript">
-
-          $("#archivo").click(function() {
-            hideOperaciones();
-            if ($(window).width() > parseInt($(".columna1").css("right"))) {
-              hideArchivo();
-            } else {
-              $(".columna1").css("right", "20%");
-              $(".columna1").css("box-shadow", "0 0 20px gray");
-            }
-          });
-          $("#operaciones").click(function() {
-            hideArchivo();
-            if (parseInt($(".columna3").css("right"))) {
-              $(".columna3").css("right", "0");
-              $(".columna3").css("box-shadow", "0 0 20px gray");
-            } else {
-              hideOperaciones();
-            }
-          });
-          $(".columna2").click(function() {
-            hideArchivo();
-            hideOperaciones();
-          });
-          $(".navbar-fixed-top").click(function() {
-            hideArchivo();
-            hideOperaciones();
-          });
-          function hideArchivo() {
-            $(".columna1").css("right", "100%");
-            $(".columna1").css("box-shadow", "none");
-          }
-          function hideOperaciones() {
-            $(".columna3").css("right", "-80%");
-            $(".columna3").css("box-shadow", "none");
-          }
-        </script>
 
       </h:form>
     </div>
+    <script type="text/javascript" src="#{request.contextPath}/js/privated/select_proyecto.js" ></script> 
   </h:body>
 </html>
 
