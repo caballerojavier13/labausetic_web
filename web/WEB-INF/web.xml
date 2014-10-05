@@ -25,4 +25,5 @@
     <exception-type>javax.faces.application.ViewExpiredException</exception-type>
     <location>/home.xhtml</location>
 </error-page>
+
 </web-app>
