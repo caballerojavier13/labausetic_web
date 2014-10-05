@@ -22,5 +22,4 @@
                 </plugins>
                 <finalName>javaactivedirectory</finalName>
         </build>
-
 </project>
