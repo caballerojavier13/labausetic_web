@@ -16,20 +16,29 @@
       <artifactId>struts2-core</artifactId>
       <version>2.3.1.2</version>
     </dependency>
+		<dependency>
+			 <groupId>com.sun.faces</groupId>
+			 <artifactId>jsf-api</artifactId>
+			 <version>2.1.7</version>
+		</dependency>
+		<dependency>
+			 <groupId>com.sun.faces</groupId>
+			 <artifactId>jsf-impl</artifactId>
+			 <version>2.1.7</version>
+		</dependency>
   </dependencies>
   <build>
-    <plugins>
-	  <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.3</version>
-        <configuration>
-          <source>${java.version}</source>
-          <target>${java.version}</target>
-				 <failOnMissingWebXml>false</failOnMissingWebXml>
-        </configuration>
-      </plugin>
+			<finalName>formaltesting</finalName>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>2.3.1</version>
+            <configuration>
+               <source>1.6</source>
+               <target>1.6</target>
+            </configuration>
+         </plugin>
     </plugins>
-    <finalName>formaltesting</finalName>
   </build>
 </project>

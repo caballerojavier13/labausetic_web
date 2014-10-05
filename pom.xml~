@@ -16,6 +16,16 @@
       <artifactId>struts2-core</artifactId>
       <version>2.3.1.2</version>
     </dependency>
+		<dependency>
+			 <groupId>com.sun.faces</groupId>
+			 <artifactId>jsf-api</artifactId>
+			 <version>2.1.7</version>
+		</dependency>
+		<dependency>
+			 <groupId>com.sun.faces</groupId>
+			 <artifactId>jsf-impl</artifactId>
+			 <version>2.1.7</version>
+		</dependency>
   </dependencies>
   <build>
     <plugins>
@@ -26,8 +36,6 @@
         <configuration>
           <source>${java.version}</source>
           <target>${java.version}</target>
-		 <webXml>\Web\WEB-INF\web.xml</webXml>
-		 <failOnMissingWebXml>false</failOnMissingWebXml>
         </configuration>
       </plugin>
     </plugins>

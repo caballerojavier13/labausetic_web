@@ -37,5 +37,11 @@
     <dependent-module archiveName="commons-io-2.0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/commons-io/commons-io/2.0.1/commons-io-2.0.1.jar">
       <dependency-type>uses</dependency-type>
     </dependent-module>
+    <dependent-module archiveName="jsf-api-2.1.7.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/com/sun/faces/jsf-api/2.1.7/jsf-api-2.1.7.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="jsf-impl-2.1.7.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/com/sun/faces/jsf-impl/2.1.7/jsf-impl-2.1.7.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
   </wb-module>
 </project-modules>
