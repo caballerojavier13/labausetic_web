@@ -3,7 +3,7 @@
     <type>org.netbeans.modules.web.project</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/web-project/3">
-            <name>Proyecto de Investigacion Web</name>
+            <name>testingformal</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <web-module-libraries>
                 <library dirs="200">
@@ -11,11 +11,15 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${libs.javaparser-1.0.8.classpath}</file>
+                    <file>${libs.jsf20.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${libs.jsf20.classpath}</file>
+                    <file>${file.reference.jstl-1.2.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.javaparser-1.0.8.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
@@ -29,6 +33,7 @@
         </data>
         <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
             <word>formaltesting</word>
+            <word>src</word>
             <word>web</word>
         </spellchecker-wordlist>
     </configuration>

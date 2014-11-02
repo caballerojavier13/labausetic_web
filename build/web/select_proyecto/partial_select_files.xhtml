@@ -7,10 +7,10 @@
   <div>
     <div class="fila" style="width: 90%; left: 5%; z-index: 2; ">
       <h:inputFile id="file" required="true" value="#{fileBean.archivoNombre}" class="filestyle" >
-        <f:ajax event="change" />
+          <f:ajax event="change" listener="#{fileBean.subirArchivo}" />
+        
       </h:inputFile>
       <h:commandButton value="Subir"
-                       action="#{fileBean.subirArchivo()}"
                        class="btn btn-primary btn-block"
                        style="margin-top: 5px;margin-bottom: 5px;">
         <f:ajax event="click" render="@all" />
@@ -32,9 +32,9 @@
           <ul>
             <c:forEach var="item" items="#{fileBean.metodos}">
               <li data-jstree='{"icon":"./img/java_icon.png"}' >
-                <h:commandLink action="#{fileBean.mostrarMetodo(item.indice)}" >
+                <h:commandLink >
                   #{item.nombre}
-                  <f:ajax event="click" render="codigo_fuente" />
+                    <f:ajax event="click" listener="#{fileBean.mostrarMetodo(item.indice)}" render="codigo_fuente" />
                 </h:commandLink>
               </li>
             </c:forEach>
