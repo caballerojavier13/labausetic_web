@@ -41,6 +41,7 @@ $(function() {
   
   
   heightCanvas();
+  
 });
 
 $(window).resize(function() {

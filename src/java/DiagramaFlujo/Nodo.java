@@ -17,15 +17,18 @@ public class Nodo {
   private Nodo siguiente;
   private Nodo siguienteAlt;  
   private boolean permiteAlt;
+  private boolean retorno;
   
   private TipoNodo tipo;
 
   public Nodo() {
+      retorno = false;
   }
 
   public Nodo(int Id) {
     this.Id = Id;
     permiteAlt = false;
+    retorno = false;
   }
 
   public int getId() {
@@ -75,6 +78,14 @@ public class Nodo {
   public void setPermiteAlt(boolean permiteAlt) {
     this.permiteAlt = permiteAlt;
   }
+
+    public boolean isRetorno() {
+        return retorno;
+    }
+
+    public void setRetorno(boolean retorno) {
+        this.retorno = retorno;
+    }
   
   
 }
