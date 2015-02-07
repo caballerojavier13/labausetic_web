@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Testing Formal</title>
         <meta charset="utf-8"></meta>
@@ -49,7 +51,7 @@
                             <li><a href="./index.xhtml">Home</a></li>
                             <li><a href="./faces/select_proyecto.xhtml">Codigo Fuente</a></li>
                             <li><a href="./grafo_flujo.xhtml">Grafo de Contról de Flujo</a></li>  
-                            <li class="active"><a href="">Ver Matriz Adjunta</a></li>  
+                            <li class="active" style="cursor:pointer"><a >Ver Matriz Adjunta</a></li>  
                         </ul>
 
                     </div><!-- /.navbar-collapse -->
@@ -58,24 +60,22 @@
 
             <div id="canvas" style="position: fixed; top: 70px;left: 5%;width: 90%; height: 80%; padding-top: 70px; padding: 20px; overflow: auto;">
                 <div class="table-responsive">
-                    <table class="table table-bordered">
-
+                    <table class="table table-bordered" style="text-align: center;">
                         <tbody>
                             <tr>
                                 <th></th>
-                                <ui:repeat var="nodo" value="#{matrizAdjunta.nodos}">
-                                    <th>#{nodo.id}</th>
-                                </ui:repeat>
+                                <c:forEach var="nodoColumna" items="#{matrizAdjunta.nodos}">
+                                    <th style="text-align: center;">#{nodoColumna.id}</th>
+                                </c:forEach>
                             </tr>
-                            <ui:repeat var="nodo" value="#{matrizAdjunta.nodos}">
+                            <c:forEach var="nodoFila" items="#{matrizAdjunta.nodos}">
                                 <tr>
-                                    <th scope="row">#{nodo.id}</th>
-                                    <ui:repeat var="nodo" value="#{matrizAdjunta.nodos}">
-                                        <td>Table cell</td>
-                                    </ui:repeat>
+                                    <th scope="row" style="text-align: center;">#{nodoFila.id}</th>
+                                    <c:forEach var="nodo" items="#{matrizAdjunta.nodos}">
+                                        <td>#{matrizAdjunta.listContains(nodoFila.siguiente, nodo)}</td>
+                                    </c:forEach>
                                 </tr>
-                            </ui:repeat>
-
+                            </c:forEach>
                         </tbody>
                     </table>
                 </div>
