@@ -1,0 +1,54 @@
+body{
+    background: white;
+    overflow: auto !important;
+}
+.table-responsive{
+    position: relative;
+    top: 70px;
+    border: none !important;
+    overflow: auto;
+    height: 100%;
+    padding: 0px !important;
+    //background: red;
+}
+@media screen and (max-width: 767px){
+    #canvas{
+    }
+    .table-responsive {
+        //top:80px;
+        //padding: 10px !important;
+    }
+    table{
+        left: 0;
+    }
+}
+
+table{
+    position: relative;
+    margin: 0 auto;
+    background: rgba(229, 229, 229, 0.3);
+    border: none !important;
+    //left: -10px;
+}
+th, td{
+    cursor: default;
+    width: 40px !important;
+    height: 40px !important;
+    border: 1px solid #6E6E6E !important;
+}
+tr:hover{
+    background: rgba(100,100,100,0.6);
+    color: white;
+}
+td:hover{
+    font-weight: bolder;
+    background: rgba(50,50,50,0.8) !important;
+    font-size: 25px;
+    border: solid 1px white !important;
+    color: white !important;
+    padding: 0 !important;
+}
+.td_col_hover{
+    background: rgba(100,100,100,0.6);
+    color: white;
+}
