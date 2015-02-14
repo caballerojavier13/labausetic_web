@@ -8,200 +8,204 @@ and open the template in the editor.
     Author     : javier
 */
 body{
-  background: rgba(102, 102, 102, 0.52);
-  width: 100%;
-  padding: 100px;
-  /* overflow: hidden; */
+    background: rgba(102, 102, 102, 0.52);
+    width: 100%;
+    padding: 100px;
+    /* overflow: hidden; */
 }
 
 .ui-loader{
-  display: none;
+    display: none;
 }
 
 .blanco{
-  background: white;
+    background: white;
 }
 
 .borde1{
-  border: solid 1px black;  
+    border: solid 1px black;  
 }
 @media (max-width: 395px) {
-  #mobile_menu h1{
-    font-size: 10px;
-  }
+    #mobile_menu h1{
+        font-size: 10px;
+    }
 
-  #archivo, #operaciones{
-    font-size: 10px;
-    line-height: 20px;
-  }
+    #archivo, #operaciones{
+        font-size: 10px;
+        line-height: 20px;
+    }
+
+}
+
+.columna1{
+    border-right: solid 1px #333;
+}
+.columna2{
+}
+.columna2 textarea{
+    border-radius: 5px;
+}
+.columna3{
 
 }
 
 @media (max-width: 992px) {
-  .columna1{
-    position: absolute;
-    top: 51px;
-    left: 0;
-    width: 80%;
-    max-width: 256px;
-    height: 100%;
-    z-index: 100;
-    padding-top: 20px;
-    display: none;
-    box-shadow: 0 0 10px rgba(50,50,50,0.8);
-  }
-  .columna2{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%; 
-    height: 100%; 
-    padding-top: 70px;
-
-  }
-  .columna2 textarea{
-    position: fixed; 
-    resize: none; 
-    border: solid rgb(226, 226, 226) 1px; 
-    border-radius: 6px; 
-    height: calc(100% - 110px);
-    width: 96%; 
-    top: 56px; 
-    bottom: 76px;
-    left: 2%;     
-    padding: 1%; 
-    overflow-y: auto
-  }
-  .columna3{
-    position: absolute;
-    right: 0;
-    top: 51px;
-    width: 80%;
-    max-width: 256px;
-    height: 100%;
-    z-index: 100;
-    padding-top: 0px;
-    display: none;
-    box-shadow: 0 0 10px rgba(50,50,50,0.8);
-  }
+    .columna1{
+        position: absolute;
+        top: 51px;
+        left: 0;
+        width: 80%;
+        max-width: 256px;
+        height: 100%;
+        z-index: 100;
+        padding-top: 20px;
+        display: none;
+    }
+    .columna2{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%; 
+        height: 100%; 
+        padding-top: 70px;
+        border-left: solid 1px #333;
+    }
+    .columna2 textarea{
+        position: fixed; 
+        resize: none; 
+        border: solid rgb(226, 226, 226) 1px; 
+        height: calc(100% - 110px);
+        width: 96%; 
+        top: 56px; 
+        bottom: 76px;
+        left: 2%;     
+        padding: 1%; 
+        overflow-y: auto
+    }
+    .columna3{
+        position: absolute;
+        right: 0;
+        top: 51px;
+        width: 80%;
+        max-width: 256px;
+        height: 100%;
+        z-index: 100;
+        padding-top: 0px;
+        display: none;
+        border-left: solid 1px #333;
+    }
 }
 @media (min-width: 992px) {
-  .columna1{
-    position: absolute;
-    top: 0;
-    left:0;
-    width: 20%; 
-    padding-top: 70px;
-    overflow: hidden;
-    display: block;
-    box-shadow: none;
-  }
-  .columna2{
-    position: absolute;
-    top: 0;
-    left: 20%;
-    width: 60%; 
-    height: 100%; 
-    padding-top: 70px;
-    min-height: 600px;
-    box-shadow: inset 0 0 20px black;
-
-    overflow-y: hidden;
-  }
-  .columna2 textarea{
-    resize: none; 
-    border: solid gray 1px; 
-    border-radius: 3px; 
-    height: 90%; 
-    width: 90%;  
-    top:5%;
-    left: 5%; 
-    position: relative; 
-    box-shadow: 0 0 10px rgba(50,50,50,0.8);
-    padding: 1%; 
-    overflow-y: auto;
-  }
-  .columna3{
-    position: absolute;
-    top: 51px;
-    left: 80%;
-    width: 20%; 
-    padding-top: 70px;
-    min-height: 600px;
-    display: block;
-    box-shadow: none;
-  }
+    .columna1{
+        position: absolute;
+        top: 0;
+        left:0;
+        width: 20%; 
+        padding-top: 70px;
+        overflow: hidden;
+        display: block;
+        border-right: none;
+    }
+    .columna2{
+        position: absolute;
+        top: 0;
+        left: 20%;
+        width: 60%; 
+        height: 100%; 
+        padding-top: 70px;
+        min-height: 600px;
+        overflow-y: hidden;
+    }
+    .columna2 textarea{
+        resize: none; 
+        border: solid gray 1px; 
+        height: 90%; 
+        width: 90%;  
+        top:5%;
+        left: 5%; 
+        position: relative; 
+        padding: 1%; 
+        overflow-y: auto;
+    }
+    .columna3{
+        position: absolute;
+        top: 51px;
+        left: 80%;
+        width: 20%; 
+        padding-top: 70px;
+        min-height: 600px;
+        display: block;
+        border-left: none;
+    }
 }
 
 .divisor{
-  position: relative;
-  left: 5%;
-  height: 1px;
-  width: 90%;
-  box-shadow: 0 0 5px black;
-  margin-top: 10px;
-  margin-bottom: 10px;
+    position: relative;
+    left: 5%;
+    height: 1px;
+    width: 90%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom: solid 1px gray;
 }
 .fila{
-  position: relative;
-  display: inline-block;
+    position: relative;
+    display: inline-block;
 
 }
 
 .nav .active_my{
-  border-bottom: solid gray 2px;
+    border-bottom: solid gray 2px;
 }
 .nav .active_my:hover{
-  background: none;
-  border-bottom: solid gray 2px;
+    background: none;
+    border-bottom: solid gray 2px;
 }
 .navbar-nav_my li:hover{
-  border-bottom: solid rgb(199, 199, 199) 2px;
-  background: #FFFFFF;
+    border-bottom: solid rgb(199, 199, 199) 2px;
+    background: #FFFFFF;
 }
 
 .header-mobile{
-  height: 46px;
-  line-height: 46px;
+    height: 46px;
+    line-height: 46px;
 }
 
 .listviewSeparado li{
-  margin-bottom: 10px;
-  border: solid 2px rgb(204, 204, 204);
-  border-left: none;
-  border-right: none;
+    margin-bottom: 10px;
+    border: solid 2px rgb(204, 204, 204);
+    border-left: none;
+    border-right: none;
 }
 
 #canvas, #paper{
-  position: relative; 
-  top:50px; 
-  background: white; 
-  width: 100%; 
-  left: 0%; 
-  border-radius: 3px; 
-  box-shadow: 0 0 10px gray; 
-  overflow: hidden; 
-  padding-left: 2%; 
-  padding-right: 2%;
+    position: relative; 
+    top:50px; 
+    background: white; 
+    width: 100%; 
+    left: 0%; 
+    border-radius: 3px; 
+    overflow: hidden; 
+    padding-left: 2%; 
+    padding-right: 2%;
 
 }
 #canvas::-webkit-scrollbar { 
-  display: none; 
+    display: none; 
 }
 .back_button{
-  position: fixed; 
-  bottom: 25px;
-  left: 30px; 
-  background: lightgray; 
-  height:  36px; 
-  width: 150px; 
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(50,50,50,0.8);
-  opacity: 0.4;
-  transition: all linear 0.5s;
+    position: fixed; 
+    bottom: 25px;
+    left: 30px; 
+    background: lightgray; 
+    height:  36px; 
+    width: 150px; 
+    border-radius: 5px;
+    opacity: 0.4;
+    transition: all linear 0.5s;
 }
 .back_button:hover{
-  box-shadow: 0 0 10px rgba(50,50,50,1);
-  opacity: 1;
-  transition: all linear 0.5s;
+
+    opacity: 1;
+    transition: all linear 0.5s;
 }

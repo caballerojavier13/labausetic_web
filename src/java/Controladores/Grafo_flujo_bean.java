@@ -7,11 +7,11 @@ package Controladores;
 
 import DTO.Metodo;
 import DTO.Sentencia;
+import Expertos.Redirector;
 import GrafoFlujo.GeneradorGrafoFlujo;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 /**
@@ -33,13 +33,8 @@ public class Grafo_flujo_bean {
 
         } catch (Exception e) {
 
-            FacesContext facesContext = FacesContext.getCurrentInstance();
-
-            ExternalContext ec = facesContext.getExternalContext();
-
-            facesContext.getApplication().getNavigationHandler().handleNavigation(facesContext, null, "index.xhtml");
-
-            System.out.println("Intentamos redireccionar");
+            new Redirector().RedireccionarHome();
+            
 
         }
     }

@@ -28,7 +28,7 @@ public class GeneradorGrafoFlujo {
         return ParseSentencias(parseBody);
     }
 
-    private List<Nodo> parseBody(BlockStmt body) {
+    public List<Nodo> parseBody(BlockStmt body) {
         List<Nodo> resultado = new ArrayList();
         Nodo finTemp;
         Nodo inicioTemp = null;
