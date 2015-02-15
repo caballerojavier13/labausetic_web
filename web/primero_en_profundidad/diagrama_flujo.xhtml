@@ -7,15 +7,18 @@
         <meta charset="utf-8"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"></meta>
         <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/bootstrap.css" />
-        
+
         <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/my-theme.css" />
-        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/joint.css" />
         <script type="text/javascript" src="#{request.contextPath}/js/public/jquery-2.1.1.min.js" ></script>
         <script type="text/javascript" src="#{request.contextPath}/js/public/bootstrap.js" ></script>
-
         <script type="text/javascript" src="#{request.contextPath}/js/public/raphael-min.js" ></script>
-        <script type="text/javascript" src="#{request.contextPath}/js/privated/grafo_flujo.js" ></script>
+        <script type="text/javascript" src="#{request.contextPath}/js/public/flowchart-1.3.4.min.js" ></script>
+
+        <script type="text/javascript" src="#{request.contextPath}/js/privated/diagrama_flujo.js" ></script>
         <script type="text/javascript" src="#{request.contextPath}/js/public/modernizr-latest.js" ></script>
+        <script type="text/javascript" src="#{request.contextPath}/js/public/jquery-scrollable.js" ></script>
+        <script type="text/javascript" src="#{request.contextPath}/js/public/e-smart-zoom-jquery.js" ></script>
+
 
 
         <link rel="shortcut icon" type="image/png" href="#{request.contextPath}/img/favicon.png" />
@@ -26,6 +29,13 @@
                 padding: 0;
             }
         </style>
+        <script type="text/javascript">
+            jQuery(function ($) {
+                if (!Modernizr.touch) { // if not a smartphone
+                    debiki.Utterscroll.enable();
+                }
+            });
+        </script>
     </h:head>
     <h:body>
         <div class="container" style="overflow: hidden">
@@ -45,29 +55,38 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" >
                         <ul class="nav navbar-nav">
-                            <li><a href="./index.xhtml">Home</a></li>
-                            <li><a href="./faces/select_proyecto.xhtml">Codigo Fuente</a></li>
-                            <li class="active" style="cursor:pointer"><a>Grafo de Contról de Flujo</a></li>  
-                            <li><a href="./matriz_adyacencia.xhtml">Matriz Adyacencia</a></li>  
+                            <li><a href="../index.xhtml">Home</a></li>
+                            <li><a href="../select_proyecto.xhtml">Codigo Fuente</a></li>  
+                            <li><a href="../algoritmo_primero_profundidad.xhtml">Algoritmo: "Primero en Profundidad"</a></li>  
+                            <li class="active" style="cursor:pointer"><a>Diagrama de Flujo</a></li>  
                         </ul>
-
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
             </nav>
 
-            <div id="canvas" style="position: fixed; top: 70px;left: 5%;width: 90%; height: 80%; padding-top: 70px; padding: 20px; overflow: auto;">
-                <textarea id="code" style="display: none;width: 100%; height: 200px; resize: none; border-radius: 5px; border: none; box-shadow: 0 0 5px gray;">#{grafo_flujo_bean.dibujarDiagrama()}</textarea>
-                <canvas id="viewport" width="1200" height="800"></canvas>
+            <div style="position: fixed; top: 0px;left: 5%;width: 90%; height: 100%; padding-top: 70px; padding: 20px; overflow: hidden">
+
+                <div style="display: none">
+                    <textarea id="code" style="width: 100%; resize: none;border-radius: 5px; border: none; box-shadow: 0 0 5px gray;" rows="11">
+                        #{diagrama_flujo_bean.dibujarDiagrama()}
+                    </textarea>
+                    <button id="run" type="button" class="btn btn-default" style="width: 200px; margin-top: 10px; ">Run</button>
+                </div>
+
+                <div id="canvas">
+
+                </div>
             </div>
 
-            <h:link outcome="select_proyecto" class="btn btn-default back_button hidden-xs" value="">
-                <span class="glyphicon glyphicon-chevron-left"></span> Atras  
-            </h:link>
         </div>
 
-        <script type="text/javascript" src="#{request.contextPath}/js/public/arbor/arbor.js"></script>
-        <script type="text/javascript" src="#{request.contextPath}/js/public/arbor/echolalia.js"></script>
-        
+
+        <script type="text/javascript" src="#{request.contextPath}/js/public/debiki-utterscroll.js" ></script>    
+        <script>
+            $(document).ready(function () {
+                $('#canvas svg').smartZoom({'containerClass': 'zoomableContainer'});
+            });
+        </script>
     </h:body>
 </html>
 

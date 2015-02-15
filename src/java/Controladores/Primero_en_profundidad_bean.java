@@ -25,7 +25,7 @@ import javax.faces.context.FacesContext;
 public class Primero_en_profundidad_bean {
 
     private List<NodoAlgoritmo> grafo;
-
+    private int camino_seleccionado;
     private List<List<Nodo>> algoritmo;
 
     /**
@@ -42,6 +42,7 @@ public class Primero_en_profundidad_bean {
                 grafo.add(new NodoAlgoritmo(grafo_temp.get(i)));
             }
             algoritmo = find_caminos_alternativos();
+            camino_seleccionado = 0;
         } catch (Exception e) {
             new Redirector().RedireccionarHome();
         }
@@ -69,21 +70,21 @@ public class Primero_en_profundidad_bean {
                     }
                     if (nodo_temp.getNodo().getSiguiente().size() > 0) {
                         int Id = nodo_temp.getNodo().getSiguiente().get(nodo_temp.getBacktrack()).getId();
-                        nodo_temp = findNodo(grafo, Id);
+                        nodo_temp = findNodoAlgortimo(grafo, Id);
                         if (nodo_temp.isVisitado()) {
-                            if (siguientesVisitados(nodo_temp)) {                                
+                            if (siguientesVisitados(nodo_temp)) {
                                 loop = false;
                             } else {
                                 temp.add(nodo_temp.getNodo());
                                 nodo_temp.setVisitado(true);
-                                
+
                                 nodo_temp = firstSiguienteNoVisitado(nodo_temp);
                                 temp.add(nodo_temp.getNodo());
                                 nodo_temp.setVisitado(true);
                             }
-                        }else{
-                                temp.add(nodo_temp.getNodo());
-                                nodo_temp.setVisitado(true);
+                        } else {
+                            temp.add(nodo_temp.getNodo());
+                            nodo_temp.setVisitado(true);
                         }
                     } else {
                         loop = false;
@@ -100,10 +101,21 @@ public class Primero_en_profundidad_bean {
         }
     }
 
-    private NodoAlgoritmo findNodo(List<NodoAlgoritmo> listado, int Id) {
+    private NodoAlgoritmo findNodoAlgortimo(List<NodoAlgoritmo> listado, int Id) {
         NodoAlgoritmo Resultado = null;
         for (int i = 0; i < listado.size(); i++) {
             if (listado.get(i).getNodo().getId() == Id) {
+                Resultado = listado.get(i);
+                break;
+            }
+        }
+        return Resultado;
+    }
+
+    private Nodo findNodo(List<Nodo> listado, int Id) {
+        Nodo Resultado = null;
+        for (int i = 0; i < listado.size(); i++) {
+            if (listado.get(i).getId() == Id) {
                 Resultado = listado.get(i);
                 break;
             }
@@ -127,7 +139,7 @@ public class Primero_en_profundidad_bean {
         boolean Resultado = true;
         List<Nodo> siguiente = nodo.getNodo().getSiguiente();
         for (int i = 0; i < siguiente.size(); i++) {
-            if (!findNodo(this.grafo, siguiente.get(i).getId()).isVisitado()) {
+            if (!findNodoAlgortimo(this.grafo, siguiente.get(i).getId()).isVisitado()) {
                 Resultado = false;
                 break;
             }
@@ -139,7 +151,7 @@ public class Primero_en_profundidad_bean {
         NodoAlgoritmo Resultado = null;
         List<Nodo> siguiente = nodo.getNodo().getSiguiente();
         for (int i = 0; i < siguiente.size(); i++) {
-            NodoAlgoritmo temp = findNodo(this.grafo, siguiente.get(i).getId());
+            NodoAlgoritmo temp = findNodoAlgortimo(this.grafo, siguiente.get(i).getId());
             if (!temp.isVisitado()) {
                 Resultado = temp;
                 break;
@@ -154,4 +166,79 @@ public class Primero_en_profundidad_bean {
         }
     }
 
+    public String dibujarCamino() {
+        String diagrama = ParseSentencias(grafo);
+
+        return diagrama;
+    }
+
+    private String ParseSentencias(List<NodoAlgoritmo> nodos) {
+
+        String resultado = "{ \n";
+        resultado += "\"nodes\": { \n";
+        for (int i = 0; i < nodos.size(); i++) {
+            if (findNodo(algoritmo.get(camino_seleccionado), nodos.get(i).getNodo().getId()) == null) {
+                if (i == nodos.size() - 1) {
+                    resultado += "\"" + nodos.get(i).getNodo().getId() + "\": {} \n";
+                } else {
+                    resultado += "\"" + nodos.get(i).getNodo().getId() + "\": {}, \n";
+                }
+            } else {
+                if (i == nodos.size() - 1) {
+                    resultado += "\"" + nodos.get(i).getNodo().getId() + "\": {\"color\":\"red\"} \n";
+                } else {
+                    resultado += "\"" + nodos.get(i).getNodo().getId() + "\": {\"color\":\"red\"}, \n";
+                }
+            }
+        }
+        resultado += "},\n";
+        resultado += "\"edges\": {\n";
+        for (int i = 0; i < nodos.size(); i++) {
+            if (i == nodos.size() - 1) {
+                resultado += NodosAsociados(nodos.get(i).getNodo(), true);
+            } else {
+                resultado += NodosAsociados(nodos.get(i).getNodo(), false);
+            }
+        }
+        resultado += "}";
+        return resultado + "\n}";
+    }
+
+    private String NodosAsociados(Nodo n, boolean ultimo) {
+        String resultado = "\"" + n.getId() + "\": {";
+        List<Nodo> listado = n.getSiguiente();
+        for (int i = 0; i < listado.size(); i++) {
+            if (findNodo(algoritmo.get(camino_seleccionado), n.getId()) == null || findNodo(algoritmo.get(camino_seleccionado), listado.get(i).getId()) == null) {
+                if (i == listado.size() - 1) {
+                    resultado += "\"" + listado.get(i).getId() + "\": {} \n";
+                } else {
+                    resultado += "\"" + listado.get(i).getId() + "\": {}, \n";
+                }
+            } else {
+                if (i == listado.size() - 1) {
+                    resultado += "\"" + listado.get(i).getId() + "\": {\"color\":\"red\"} \n";
+                } else {
+                    resultado += "\"" + listado.get(i).getId() + "\": {\"color\":\"red\"}, \n";
+                }
+            }
+        }
+        if (ultimo) {
+            return resultado + "}\n";
+        } else {
+            return resultado + "},\n";
+        }
+    }
+
+    public int getCamino_seleccionado() {
+        return camino_seleccionado;
+    }
+
+    public void setCamino_seleccionado(int camino_seleccionado) {
+        this.camino_seleccionado = camino_seleccionado;
+         System.out.println("Cambio de camino" + this.camino_seleccionado);
+    }
+    
+    public void escucharCambio(){
+        System.out.println("Cambio de camino");
+    }
 }
