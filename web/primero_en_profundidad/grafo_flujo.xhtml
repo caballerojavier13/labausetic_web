@@ -35,7 +35,7 @@
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-mobile">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -45,27 +45,26 @@
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" >
+                    <div class="collapse navbar-collapse" id="navbar-collapse-mobile">
                         <ul class="nav navbar-nav">
-                            <li><a href="../index.xhtml">Home</a></li>
-                            <li><a href="../select_proyecto.xhtml">Codigo Fuente</a></li>  
-                            <li><a href="../algoritmo_primero_profundidad.xhtml">Algoritmo: "Primero en Profundidad"</a></li>  
+                            <li><a href="./index.xhtml">Home</a></li>
+                            <li><a href="./select_proyecto.xhtml">Codigo Fuente</a></li>  
+                            <li><a href="./algoritmo_primero_profundidad.xhtml">Algoritmo: "Primero en Profundidad"</a></li>  
                             <li class="active" style="cursor:pointer"><a>Grafo de Contról de Flujo</a></li> 
-                            <li><a>#{primero_en_profundidad_bean.camino_seleccionado}</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
             </nav>
 
             <f:view>
-                <h:form>
+                <h:form id="form_camino">
                     <h:selectOneMenu id="select_camino" value="#{primero_en_profundidad_bean.camino_seleccionado}" class="form-control" style="position: fixed; top: 75px;left: 10%;width: 80%; z-index: 10;">
                         <f:selectItems value="#{primero_en_profundidad_bean.algoritmo}" var="camino" itemLabel="Camino Nº #{primero_en_profundidad_bean.algoritmo.indexOf(camino) + 1}" itemValue="#{primero_en_profundidad_bean.algoritmo.indexOf(camino)}"></f:selectItems>
                         <f:ajax event="change" render="@all"/>
                     </h:selectOneMenu>                    
                 </h:form>
             </f:view>
-            
+
             <div id="canvas" style="position: fixed; top: 70px;left: 5%;width: 90%; height: 80%; padding-top: 70px; padding: 20px; overflow: auto;">
                 <textarea id="code" style="display: none;width: 100%; height: 200px; resize: none; border-radius: 5px; border: none; box-shadow: 0 0 5px gray;">#{primero_en_profundidad_bean.dibujarCamino()}</textarea>
                 <canvas id="viewport" width="1200" height="800"></canvas>
@@ -74,7 +73,13 @@
 
         <script type="text/javascript" src="#{request.contextPath}/js/public/arbor/arbor.js"></script>
         <script type="text/javascript" src="#{request.contextPath}/js/public/arbor/echolalia.js"></script>
-
+        <script type="text/javascript">
+            $(function () {
+                $("#form_camino > select").on("change", function () {
+                    document.location.reload();
+                });
+            });
+        </script>
     </h:body>
 </html>
 

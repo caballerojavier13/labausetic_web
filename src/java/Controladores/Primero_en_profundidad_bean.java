@@ -13,7 +13,7 @@ import PrimeroEnProfundidad.NodoAlgoritmo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 /**
@@ -21,7 +21,7 @@ import javax.faces.context.FacesContext;
  * @author javier
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class Primero_en_profundidad_bean {
 
     private List<NodoAlgoritmo> grafo;
@@ -32,6 +32,10 @@ public class Primero_en_profundidad_bean {
      * Creates a new instance of PrimeroEnProfundidad
      */
     public Primero_en_profundidad_bean() {
+
+    }
+
+    public String start() {
         grafo = new ArrayList();
         Metodo refMetodo;
         try {
@@ -46,7 +50,7 @@ public class Primero_en_profundidad_bean {
         } catch (Exception e) {
             new Redirector().RedireccionarHome();
         }
-
+        return "algoritmo_primero_profundidad";
     }
 
     private List<List<Nodo>> find_caminos_alternativos() {
@@ -235,10 +239,10 @@ public class Primero_en_profundidad_bean {
 
     public void setCamino_seleccionado(int camino_seleccionado) {
         this.camino_seleccionado = camino_seleccionado;
-         System.out.println("Cambio de camino" + this.camino_seleccionado);
     }
-    
-    public void escucharCambio(){
-        System.out.println("Cambio de camino");
+
+    public String verCamino_alternativo(int camino_seleccionado) {
+        System.out.println("Camino elejido es: " + camino_seleccionado);
+        return "primero_en_profundidad/grafo_flujo.xhtml";
     }
 }

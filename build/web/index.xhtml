@@ -2,87 +2,73 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
-  <h:head>
-    <title>Testing Formal</title>
-    <meta charset="utf-8"></meta>
+    <h:head>
+        <title>Testing Formal</title>
+        <meta charset="utf-8"></meta>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"></meta>
-    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/jquery.mobile-1.4.4.css" />
-    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/bootstrap.css" />
-    
-    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/my-theme.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"></meta>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/bootstrap.css" />
 
-    <script type="text/javascript" src="#{request.contextPath}/js/public/jquery-2.1.1.min.js" ></script>
-    <script type="text/javascript" src="#{request.contextPath}/js/public/bootstrap.js" ></script>
-    <script type="text/javascript" src="#{request.contextPath}/js/public/jquery.mobile-1.4.4.min.js" ></script>
-    <link rel="shortcut icon" type="image/png" href="#{request.contextPath}/img/favicon.png" />
-    <style>
-      body{
-        overflow: auto;
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/my-theme.css" />
 
-      }
-    </style>
-  </h:head>
-  <h:body>
-
-
-    <div class="container" data-role="page" style="">
-
-      <div data-role="panel"  data-position="right" data-display="overlay" data-position-fixed="true" id="mobile_menu">
-        <h3 style="text-align: center; margin-top: -4px">Menu</h3>
-
-        <div style="height: 0px;width: 103%;margin: auto 0;position: relative;border-top: solid 1px rgb(223, 223, 223); margin-top: 10px; margin-bottom: 10px;"></div>
-
-        <ul data-role="listview" class="listviewSeparado" style="margin-top: 10px;">
-          <li class="active" data-icon="false"><a style="cursor: auto">Home</a></li>
-          <li><a href="#">Sobre el proyecto</a></li>
-          <li><a href="#">Contacto</a></li>
-        </ul>
-      </div><!-- /panel -->
-
-      <div class="navbar navbar-default navbar-fixed-top hidden-xs" role="navigation">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand " >Testing Formal de Software</a>
-          </div>
-          <div class="navbar-collapse collapse navbar-right">
-            <ul class="nav navbar-nav navbar-nav_my">
-              <li class="active_my"><a >Home</a></li>
-              <li><a href="#">Sobre el proyecto</a></li>
-              <li><a href="#">Contacto</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
-      </div>
+        <script type="text/javascript" src="#{request.contextPath}/js/public/jquery-2.1.1.min.js" ></script>
+        <script type="text/javascript" src="#{request.contextPath}/js/public/bootstrap.js" ></script>
+        <link rel="shortcut icon" type="image/png" href="#{request.contextPath}/img/favicon.png" />
+        <style>
+            body{
+                overflow: auto;
+                padding: 0;
+                padding-top: 100px;
+                background: white;
+            }
+        </style>
+    </h:head>
+    <h:body>
 
 
-      <div data-role="header" class="visible-xs-block header-mobile" data-position="fixed"  style="">
-        <h1>Testing Formal de Software</h1>
-        <a href="#mobile_menu" style="margin-top: 5px;box-shadow: none; padding: 2px;top: 0px;" class="ui-btn-right btn">
-          <img src="img/menu_mobile.png" width="32" height="32" alt="menu_mobile"/>
-        </a>
-      </div>
+        <div class="container">
 
-      <div role="main" class="ui-content">
-        <div class="jumbotron" style="text-align: center; margin-top: 30px;">
-          <h1>Bienvenido/a</h1>
-          <p class="lead">Este es un software desarrollado como resultado de un proyecto de investigación del Laboratorio de Auditoria y Seguridad en TIC's de la Universidad Tecnológica Nacional Facultad Regional Mendoza.</p>
-          <p>
-            <h:form>
-                <h:commandLink class="btn btn-lg btn-success" action="#{fileBean.start()}">Comenzar</h:commandLink>
-            </h:form>
-          </p>
-        </div>
+            <div class="navbar navbar-default navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed ui-btn ui-btn-right" data-toggle="collapse" data-target="#navbar-collapse-mobile" style="width: 43px;top: -1px;">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        <a class="navbar-brand">Testing Formal de Software</a>
+                    </div>
+                    <div class="navbar-collapse collapse navbar-right">
+                        <ul class="nav navbar-nav navbar-nav_my">
+                            <li class="active_my"><a >Home</a></li>
+                            <li><a href="#">Sobre el proyecto</a></li>
+                            <li><a href="#">Contacto</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div><!--/.container-fluid -->
+            </div>
 
-        <div class="navbar-fixed-bottom hidden-xs" style="border-top: solid lightgray 1px; padding-top: 10px;">
-          <p style="padding-left: 30px; color: gray">Javier Hernán Caballero García</p>
-        </div>
+            <div >
+                <div class="jumbotron" style="text-align: center; margin-top: 30px;">
+                    <h1>Bienvenido/a</h1>
+                    <p class="lead">Este es un software desarrollado como resultado de un proyecto de investigación del Laboratorio de Auditoria y Seguridad en TIC's de la Universidad Tecnológica Nacional Facultad Regional Mendoza.</p>
+                    <p>
+                        <h:form>
+                            <h:link  class="btn btn-lg btn-success" outcome="#{fileBean.start()}">Comenzar</h:link>
+                        </h:form>
+                    </p>
+                </div>
 
-        <div class="navbar-fixed-bottom visible-xs" style="position: static; bottom: 0; margin-top: 20px;border-top: solid lightgray 1px; padding-top: 10px;">
-          <p style="color: gray; font-size: smaller; text-align: center;">Javier Hernán Caballero García</p>
-        </div>
-      </div>
-    </div> <!-- /container -->
-  </h:body>
+                <div class="navbar-fixed-bottom hidden-xs" style="border-top: solid lightgray 1px; padding-top: 10px; background: white">
+                    <p style="padding-left: 30px; color: gray">Javier Hernán Caballero García</p>
+                </div>
+                <div class="visible-xs" style="position: relative; width: 100%; height: 50px; margin-top: 20px"></div>
+                <div class="navbar-fixed-bottom visible-xs" style="border-top: solid lightgray 1px; padding-top: 10px; background: white">
+                    <p style="color: gray; font-size: smaller; text-align: center;">Javier Hernán Caballero García</p>
+                </div>
+            </div>
+        </div> <!-- /container -->
+    </h:body>
 </html>
 
