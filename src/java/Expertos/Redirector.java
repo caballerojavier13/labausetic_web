@@ -19,7 +19,7 @@ public class Redirector {
 
         ExternalContext ec = facesContext.getExternalContext();
 
-        facesContext.getApplication().getNavigationHandler().handleNavigation(facesContext, null, "index.xhtml");
+        facesContext.getApplication().getNavigationHandler().handleNavigation(facesContext, null, "/faces/index.xhtml");
     }
 
 }

@@ -7,7 +7,7 @@ $(window).resize(function () {
 });
 
 function init() {
-    $(".table-responsive").height(parseInt($(window).height()) - 90);
+    $(".table-responsive").height(parseInt($(window).height()) - 110 - $(".titulo2").height());
     var alto_canvas = $(".table-responsive").height();
     var alto_tabla = $("table").height();
 

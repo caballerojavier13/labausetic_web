@@ -11,7 +11,6 @@ body{
     background: rgba(102, 102, 102, 0.52);
     width: 100%;
     padding: 100px;
-    /* overflow: hidden; */
 }
 
 .ui-loader{
@@ -49,7 +48,51 @@ body{
 
 }
 
-@media (max-width: 992px) {
+.titulo2{
+    position: relative; 
+    text-align: center;
+    top: 40px;
+}
+
+.menu-lateral{
+    position: fixed;
+    top: calc(10% + 25px);
+    right: -60%;
+    width: 60%;
+    height: 80%;
+    background: #e2e2e2;
+    border: solid gray 1px;
+    border-radius: 5px 0 0 5px;
+    overflow: auto;
+}
+.menu-lateral > ul{
+    margin-right: 30px;
+    margin-bottom: 30px;
+}
+.menu-lateral > .pestaña{
+    position: fixed;
+    //left: calc(40% - 30px);
+    right: 0;
+    top: 50%;
+    margin-top: -50px;
+    width: 30px;
+    height: 100px;
+    background: gray;
+    border: solid 1px;
+    border-radius: 5px 0 0 5px;
+    line-height: 100px;
+    text-align: center;
+    font-size: 50px;
+    vertical-align: middle;
+    cursor: pointer;
+    z-index: 2000;
+}
+
+.menu-lateral > h2{
+    text-align: center;
+}
+
+@media (max-width: 991px) {
     .columna1{
         position: absolute;
         top: 51px;
@@ -73,7 +116,6 @@ body{
     .columna2 textarea{
         position: fixed; 
         resize: none; 
-        border: solid rgb(226, 226, 226) 1px; 
         height: calc(100% - 110px);
         width: 96%; 
         top: 56px; 
@@ -94,8 +136,14 @@ body{
         display: none;
         border-left: solid 1px #333;
     }
+    .titulo2{
+        top: -20px;
+    }
+    .menu-lateral{
+        //display: none;
+    }
 }
-@media (min-width: 992px) {
+@media (min-width: 991px) {
     .columna1{
         position: absolute;
         top: 0;
@@ -118,11 +166,10 @@ body{
     }
     .columna2 textarea{
         resize: none; 
-        border: solid gray 1px; 
-        height: 90%; 
-        width: 90%;  
-        top:5%;
-        left: 5%; 
+        height: calc(100% - 15px);
+        width: 96%;  
+        top: 0;
+        left: 2%; 
         position: relative; 
         padding: 1%; 
         overflow-y: auto;
@@ -137,6 +184,10 @@ body{
         display: block;
         border-left: none;
     }
+    #m_a_table_resp{
+        top: 45px;
+    }
+
 }
 
 .divisor{

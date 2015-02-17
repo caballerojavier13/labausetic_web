@@ -58,7 +58,7 @@ public class FileBean implements Serializable {
         ArchivoNombre = null;
         ArchivoContenido = "";
         hayArchivo = false;
-        return "select_proyecto";
+        return "./select_proyecto.xhtml";
     }
 
     public Metodo getRefSelectedMetodo() {

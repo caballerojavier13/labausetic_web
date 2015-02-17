@@ -29,7 +29,7 @@ public class GeneradorDiagramaFlujo {
 
     }
 
-    private List<Nodo> parseBody(BlockStmt body) {
+    public List<Nodo> parseBody(BlockStmt body) {
         List<Nodo> resultado = new ArrayList();
         Nodo finTemp = null;
         Nodo inicioTemp = null;
@@ -89,7 +89,7 @@ public class GeneradorDiagramaFlujo {
         }
         return resultado;
     }
-    private List<Link> linkearNodos(List<Nodo> nodos) {
+    public List<Link> linkearNodos(List<Nodo> nodos) {
         List<Link> resultado = new ArrayList();
 
         for (Nodo nodo : nodos) {
@@ -105,7 +105,7 @@ public class GeneradorDiagramaFlujo {
         return resultado;
     }
 
-    private String ParseSentencias(List<Nodo> nodos, List<Link> links) {
+    public String ParseSentencias(List<Nodo> nodos, List<Link> links) {
 
         String resultado = "";
 

@@ -69,7 +69,8 @@
                             <ul>
                                 <c:forEach var="nodo" items="#{camino}">
                                     <li>
-                                        #{nodo.id}
+                                        <strong>Nodo Id #{nodo.id}:</strong> 
+                                        <pre>#{nodo.texto}</pre>
                                     </li>
                                 </c:forEach>
                             </ul>

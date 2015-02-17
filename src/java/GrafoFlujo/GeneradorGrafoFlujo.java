@@ -67,7 +67,7 @@ public class GeneradorGrafoFlujo {
         return resultado;
     }
 
-    private String ParseSentencias(List<Nodo> nodos) {
+    public String ParseSentencias(List<Nodo> nodos) {
 
         String resultado = "{ \n";
         resultado += "\"nodes\": { \n";

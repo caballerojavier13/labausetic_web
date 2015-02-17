@@ -212,17 +212,17 @@ public class Primero_en_profundidad_bean {
         String resultado = "\"" + n.getId() + "\": {";
         List<Nodo> listado = n.getSiguiente();
         for (int i = 0; i < listado.size(); i++) {
-            if (findNodo(algoritmo.get(camino_seleccionado), n.getId()) == null || findNodo(algoritmo.get(camino_seleccionado), listado.get(i).getId()) == null) {
-                if (i == listado.size() - 1) {
-                    resultado += "\"" + listado.get(i).getId() + "\": {} \n";
-                } else {
-                    resultado += "\"" + listado.get(i).getId() + "\": {}, \n";
-                }
-            } else {
+            if (nexoCamino(n, listado.get(i))) {
                 if (i == listado.size() - 1) {
                     resultado += "\"" + listado.get(i).getId() + "\": {\"color\":\"red\"} \n";
                 } else {
                     resultado += "\"" + listado.get(i).getId() + "\": {\"color\":\"red\"}, \n";
+                }
+            } else {
+                if (i == listado.size() - 1) {
+                    resultado += "\"" + listado.get(i).getId() + "\": {} \n";
+                } else {
+                    resultado += "\"" + listado.get(i).getId() + "\": {}, \n";
                 }
             }
         }
@@ -240,9 +240,27 @@ public class Primero_en_profundidad_bean {
     public void setCamino_seleccionado(int camino_seleccionado) {
         this.camino_seleccionado = camino_seleccionado;
     }
-
+    
     public String verCamino_alternativo(int camino_seleccionado) {
-        System.out.println("Camino elejido es: " + camino_seleccionado);
-        return "primero_en_profundidad/grafo_flujo.xhtml";
+        this.camino_seleccionado = camino_seleccionado;
+        return "./primero_en_profundidad/grafo_flujo.xhtml";
     }
+
+    private boolean nexoCamino(Nodo nodo, Nodo siguiente) {
+        boolean Resultado = false;
+
+        List<Nodo> listado = algoritmo.get(camino_seleccionado);
+
+        for (int i = 0; i < listado.size(); i++) {
+            if (listado.get(i).getId() == nodo.getId()) {
+                if (i + 1 < listado.size() && listado.get(i + 1).getId() == siguiente.getId()) {
+                    Resultado = true;
+                    break;
+                }
+            }
+        }
+
+        return Resultado;
+    }
+
 }

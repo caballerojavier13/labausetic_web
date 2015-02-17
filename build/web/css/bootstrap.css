@@ -4129,7 +4129,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
   border-color: #e7e7e7;
-  background-color: #F0F0F0; 
+  background-color: #EDEDED; 
 }
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
