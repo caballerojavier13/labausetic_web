@@ -1,0 +1,431 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Testing Formal</title>
+        <meta charset="utf-8"></meta>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"></meta>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/bootstrap.css" />
+
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/my-theme.css" />
+
+        <script type="text/javascript" src="#{request.contextPath}/js/public/jquery-2.1.1.min.js" ></script>
+        <script type="text/javascript" src="#{request.contextPath}/js/public/bootstrap.js" ></script>
+        <link rel="shortcut icon" type="image/png" href="#{request.contextPath}/img/favicon.png" />
+        <style>
+            body{
+                overflow: auto;
+                padding: 0;
+                padding-top: 100px;
+                background: white;
+            }
+        </style>
+    </h:head>
+    <h:body>
+
+
+        <div class="container">
+
+            <div class="navbar navbar-default navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed ui-btn ui-btn-right" data-toggle="collapse" data-target="#navbar-collapse-mobile" style="width: 43px;top: -1px;">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand">Testing Formal de Software</a>
+                    </div>
+                    <div class="navbar-collapse collapse navbar-right" id="navbar-collapse-mobile">
+                        <ul class="nav navbar-nav navbar-nav_my">
+                            <li><h:link outcome="index">Home</h:link></li>
+                            <li class="active_my"><a>Sobre el proyecto</a></li>
+                            <li><h:link outcome="contact">Contacto</h:link></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div><!--/.container-fluid -->
+            </div>
+
+            <div class="informe">
+
+                <br/>
+                <div class="divisor" style="width:100%; left: 0"></div>
+                <br/>
+
+                <h1 style="text-align: center;">“Modelado de Técnicas de Prueba con Métodos Formales de Testing de software”</h1>
+
+                <br/>
+                <div class="divisor" style="width:100%; left: 0"></div>
+                <br/>
+                <div class="text_colum">
+                    <h2>Introducción</h2>
+                    <br/>
+                    <p>
+                        Para obtener confianza sobre el comportamiento y asegurar la calidad se debe someter al software a la ejecución de distintos tipos de pruebas.
+                    </p>
+                    <p>
+                        Pero, por más pruebas que se realicen, el testing del software no puede asegurar que un programa se comporta en concordancia con sus requerimientos de diseño, ni con los del usuario. 
+                    </p>
+                    <p>
+                        El proceso de control que asegura que el software cumple con su especificación y satisface las necesidades del usuario es el de “Validación y Verificación". 
+                    </p>
+                    <p>
+                        En esta sección introducimos los conceptos de tipos de pruebas del software. En la segunda sección presentamos los métodos de prueba y en la tercera las técnicas de pruebas para métodos formales. En la cuarta sección presentamos la propuesta objeto de este paper.
+                    </p>                
+                    <p>
+                        El software, puede ser probado de dos maneras posibles: 
+                    </p>
+                    <ul>
+                        <li>
+                            <p>
+                                Prueba funcional, con el principal objetivo de asegurar los requisitos del Software (Figura 1), que implica conocer la función específica para la cual fue diseñado el producto, se llevan a cabo pruebas que muestren que es operativo, al mismo tiempo que se encuentran errores, mediante los métodos: 
+                                <ul>
+                                    <li>
+                                        <p>
+                                            Clases de equivalencia. Un enfoque para la identificación de las clases de equivalencia consiste en derivarlas a partir de las condiciones de entrada [Myers04]. Éstas se obtienen a partir de la especificación o descripción del sistema y se utilizan para dividir el dominio de entrada en clases, que posteriormente deberán ser cubiertas por los casos de prueba. Las clases de equivalencia se clasifican genéricamente en válidas (valores de entrada que cumplen la especificación) e inválidas (entradas erróneas o no esperadas). Tras la identificación de las clases se generan casos de prueba que cubran el mayor número posible de clases válidas y un caso para cada clase inválida. De esa manera se evita el enmascaramiento de errores en las pruebas inválidas.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            Category-Partition Method (CPM). Técnica de prueba de caja negra para la generación sistemática de casos de prueba que toma como base la partición en clases de equivalencia. La especificación se divide inicialmente en unidades funcionales que se pueden probar independientemente. Para cada una se identifican las características más destacables del dominio de entrada (categorías), dividiéndose en clases de equivalencia.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            Pruebas de regresión. Cualquier modificación sobre un Software ya probado, sea porque se corrige un defecto encontrado, porque se implementa una mejora o por una adaptación, puede introducir nuevos defectos. Por tanto, es preciso volver a ejecutar, sobre el código modificado, los casos de prueba que fueron diseñados y ejecutados. Este tipo de actividad es la prueba de regresión.
+                                        </p>
+                                    </li>
+                                </ul>
+
+                            </p>
+                            <div class="imagen">
+                                <img src="#{request.contextPath}/img/about/figura1.png" class="img-thumbnail img-responsive" alt="figura1"/>
+                                <span>Figura 1</span>
+                            </div>
+
+                        </li>
+                        <li>
+                            <p>
+                                Prueba estructural que implica conocer el funcionamiento interno del software, para asegurar que la operación interna se ajusta a las especificaciones y que todos los componentes internos se han comprobado adecuadamente (Figura 2). Muchas técnicas de este tipo se basan en el concepto de cobertura de ciertas propiedades o características del programa [Zhu97]. Los criterios de cobertura más comúnmente utilizados son:
+                                <ul>
+                                    <li>
+                                        <p>
+                                            Cobertura de sentencias. Toda sentencia ejecutable en un programa debe ser invocada al menos una vez.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            Cobertura de decisiones. Se diseñan casos de prueba que ejerciten las vertientes verdadera y falsa de cada decisión en un programa. Con este criterio, se asegura la prueba completa de las estructuras de control del programa siempre y cuando las decisiones sean simples, que no estén formadas por la combinación lógica de condiciones.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            Cobertura de condiciones. Cada condición en una decisión debe tomar los valores verdadero y falso al menos una vez, sin ser necesario que cada decisión tome todos los posibles simultáneamente.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            Cobertura de condición/decisión. Este criterio combina los dos anteriores, es decir, se deben diseñar casos de prueba suficientes para que cada decisión y cada condición tomen los valores verdadero y falso.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            Cobertura de condición/decisión modificada. Mejora el criterio de condición/decisión, requiriendo además que cada condición afecte independientemente a la evaluación de su decisión.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            Cobertura de múltiple condición. Requiere la evaluación de todas las posibles combinaciones de valores de cada condición en cada decisión. Es la más completa, sin embargo es poco práctica debido al gran número de casos de prueba que es necesario diseñar para su cumplimiento. Este método es el que será motivo de desarrollo en este proyecto.
+                                        </p>
+                                    </li>
+                                </ul>
+                            </p>
+                            <div class="imagen">
+                                <img src="#{request.contextPath}/img/about/figura2.png" class="img-thumbnail img-responsive" alt="figura1"/>
+                                <span>Figura 2</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <br/>
+                <div class="divisor" style="width:100%; left: 0"></div>
+                <br/>
+                <div class="text_colum">
+                    <h2>Métodos de Prueba</h2>
+                    <br/>
+
+                    <p>
+                        Los métodos de prueba pueden clasificarse según tres criterios distintos:
+                        <ol>
+                            <li>
+                                <p>
+                                    La fuente de información a partir de la cual son generados los casos de prueba.
+                                    <ul>
+                                        <li>
+                                            <p>
+                                                Métodos basados en la especificación: Generan los casos de prueba sin conocer la implementación interna del software bajo prueba, razón por la que también se denominan métodos de prueba de caja negra.
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                Métodos basados en el código: Generan los casos de prueba conociendo la implementación interna del software, razón por la que también se denominan métodos de prueba de caja blanca o de cristal. Su principal aplicación es en las pruebas de unidad.
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                Métodos basados en la especificación y el código: Combinan los métodos de caja negra y blanca. También se denominan métodos de prueba de caja gris, que serán abordados en este proyecto de investigación.
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                Métodos no basados en la especificación ni en el código: Generan los casos de prueba a partir de la información existente sobre otros sistemas similares.
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    El criterio de suficiencia que deben cumplir los casos de prueba generados. Es un criterio que define lo que constituye un conjunto de pruebas suficiente.
+                                    <ul>
+                                        <li>
+                                            <p>
+                                                Métodos estructurales: Los casos de prueba generados deben cubrir un conjunto de elementos de la estructura o de la especificación del programa bajo prueba. Según los elementos en los que se base el método para generar los casos de prueba, los criterios de prueba estructurales pueden ser de dos tipos: 
+                                                <ul>
+                                                    <li>
+                                                        <p>
+                                                            Basados en el flujo de control.
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p>
+                                                            Basados en el flujo de datos [Rapps85].
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                Métodos basados en encontrar errores: Centrados en generar casos de prueba que verifiquen el programa en ciertos puntos específicos donde existe una mayor probabilidad de encontrar errores.
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                El criterio principal basado en defectos es el de mutación, que consiste en crear programas "mutantes" que contienen un defecto respecto al original.
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                Criterios basados en errores. El objetivo es crear casos de prueba que comprueben el programa en puntos específicos en los que hay una mayor probabilidad de error [Myers04] [Foster80]. Los métodos de prueba que generan casos utilizando particiones del dominio son clasificados como métodos "domain testing" o "partition testing". 
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    El conjunto de técnicas para la generación de los casos de prueba.
+                                    <ul>
+                                        <li>
+                                            <p>
+                                                La técnica más simple es la “técnica aleatoria” la cual genera los casos de prueba arbitrariamente a partir del dominio de entrada del sistema bajo prueba.
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                La ejecución simbólica es una técnica de análisis de programas que permite obtener una expresión simbólica de cada camino del programa en función de las entradas.
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                Otra técnica de optimización utilizada para derivar casos de prueba a partir de una representación con restricciones es la técnica CLP (Constraint Logic Programming)  [Jaffar87].
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                Model checking es una técnica para la verificación formal de sistemas concurrentes con estados finitos que también ha sido utilizada para generar casos de prueba, como por ejemplo en [Ammann98].
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                Optimización metaheurística:
+                                                <ul>
+                                                    <li>
+                                                        <p>
+                                                            Algoritmos Genéticos [Goldberg89]. Los Algoritmos Genéticos se basan en los procesos genéticos naturales y la teoria de la evolución de Darwin.  
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p>
+                                                            Recocido Simulado [Kirkpatrick83]. Se basa en el proceso físico del enfriamiento lento de un metal.
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p>
+                                                            Búsqueda Tabú. Se basa en incorporar una memoria adaptativa para evitar que un procedimiento de búsqueda local quede estancado en un óptimo local.
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p>
+                                                            Búsqueda Dispersa [Glover00]. Se basa en el mantenimiento de conjuntos de soluciones que son actualizados con la combinación de miembros de otros conjuntos. 
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </p>
+                            </li>
+                        </ol>
+                    </p>
+                </div>
+                <br/>
+                <div class="divisor" style="width:100%; left: 0"></div>
+                <br/>
+                <div class="text_colum">
+                    <h2>Técnicas de Pruebas de Software para Métodos Formales</h2>
+                    <br/>
+
+                    <p>
+                        La mayoría de los métodos de prueba utilizan una determinada técnica o un conjunto de técnicas para generarlos a partir de una fuente de información concreta y con el objetivo de que los casos de prueba generados cumplan un criterio de suficiencia previamente establecido.
+                    </p>
+                    <p>
+                        La selección de un método u otro para la generación de casos de prueba debería realizarse atendiendo a cuál es el criterio de suficiencia que se pretende cumplir y a cuál es la fuente de información de la que se dispone para generar los casos. Este concepto da lugar a uno de los objetivos de este proyecto de investigación.
+                    </p>
+                    <p>
+                        Este equipo de investigación ha analizado que si bien las tendencias definidas por la mayoría de los autores se orienta hacia la automatización de casos de prueba basados en requerimientos formales, es también importante destacar que nuestra realidad regional es distinta. Esta diferencia radica en que el testing se aplica sobre artefactos de software ya construidos. El testing es el método más utilizado para intentar minimizar el riesgo de que el comportamiento de los sistemas no sea el requerido y también para mejorar su calidad.
+                    </p>
+                    <p>
+                        Debido al aumento de la complejidad de los Sistemas, la probabilidad de errores sutiles es mucho mayor. Por otra parte, algunos de estos errores pueden causar pérdidas catastróficas de dinero, tiempo, o incluso de vidas humanas. 
+                    </p>
+                    <p>
+                        Un objetivo importante de la ingeniería del software es ayudar a los desarrolladores en la construcción de sistemas que operen de manera fiable a pesar de su complejidad, en todo tipo de metodologías, incluyendo las ágiles.
+                    </p>
+                    <p>
+                        Una forma de lograr este objetivo es mediante el uso de los métodos formales. El concepto de métodos formales involucra una serie de técnicas lógicas y matemáticas con las que es posible especificar, diseñar, implementar y  verificar los sistemas de información [Monin03]. 
+                    </p>
+                    <p>
+                        El uso de métodos formales no es a priori una garantía de corrección, sin embargo, puede aumentar la comprensión de un sistema mediante la revelación de inconsistencias, ambigüedades e incompletitud que de otro modo pasarían inadvertidas.
+                    </p>
+                    <p>
+                        Recientemente se ha comenzado a ver un panorama más prometedor de los métodos formales de "especificación" de software. La industria se está abriendo a utilizar lenguajes formales para documentar las propiedades de un sistema con mayor rigurosidad. 
+                    </p>
+                    <p>
+                        Los investigadores y los profesionales están realizando más estudios de caso a escala industrial, para así obtener los beneficios de la utilización de métodos formales.
+                    </p>
+                    <p>
+                        La especificación es el proceso de describir un sistema y sus propiedades deseadas utilizando un lenguaje formal con una sintaxis y una semántica definida matemáticamente.
+                    </p>
+                    <p>
+                        Los tipos de propiedades que deben satisfacer los sistemas podrían incluir, el comportamiento funcional, el rendimiento y la estructura interna. La actual tendencia es la integración de diferentes lenguajes de especificación, siendo cada uno de ellos capaz de manejar diferentes aspectos de un sistema tales como su rendimiento en tiempo real, limitaciones, políticas de seguridad y el diseño arquitectónico.
+                    </p>
+                    <p>
+                        Algunos de los métodos y lenguajes formales, como Z [Spivey88] y VDM (Vienna Development Method) se centran sobre la especificación de la conducta de los sistemas secuenciales. 
+                    </p>
+                    <p>
+                        Los estados se describen en términos de estructuras matemáticas como conjuntos, relaciones y funciones. El estado de las transiciones se dan en términos de pre y post condiciones. 
+                    </p>
+                    <p>
+                        Otros métodos como CSP [Hoare85], CCS [Milner80], Statecharts [Harel90],  Temporal Logic [Pnueli81],  y E/S autómatas [Lynch87] se centran sobre la especificación de la conducta de los sistemas concurrentes. Los estados suelen oscilar sobre dominios simples tales como números enteros, o se dejan sin interpretar, y el comportamiento se define en términos de secuencias, árboles u órdenes parciales de acontecimientos. 
+                    </p>
+                    <p>
+                        Y otros métodos, como RAISE [Nielsen89] y LOTOS unieron dos métodos diferentes, uno para el manejo de espacios de estado importantes y uno para el manejo de la complejidad debido a la concurrencia.
+                    </p>
+                    <p>
+                        Es común a todos estos métodos el uso del concepto matemático de abstracción y descomposición.
+                    </p>
+                    <p>
+                        A través del proceso de especificación los desarrolladores pueden descubrir los defectos de diseño, las incoherencias, ambigüedades e incompletitudes del software.
+                    </p>
+                    <p>
+                        Se puede comprobar que las especificaciones sean consistentes internamente o utilizarse para derivar otras propiedades diferentes a las especificadas en el Sistema. La especificación es útil como dispositivo de comunicación entre el cliente y el diseñador, entre el diseñador y el desarrollador y entre el implementador y tester, sirviendo como un documento complementario al código fuente del sistema aunque a un nivel más elevado de descripción.
+                    </p>
+                </div>
+                <br/>
+                <div class="divisor" style="width:100%; left: 0"></div>
+                <br/>
+                <div class="text_colum">
+                    <h2>Referencias bibliográficas</h2>
+
+                    <p>
+                        <strong>[Myers04]</strong> Myers, G. .J (2004) The art of software testing. John Wiley &amp; Sons, second edition.
+                    </p>
+
+                    <p>
+                        <strong>[Zhu97]</strong> Zhu, H.; Hall, P. A. V.; May, J. H. R. (1997) "Software unit test coverage and adequacy".ACM Computing Surveys, 29(4), pp. 366-42.
+                    </p>
+
+                    <p>
+                        <strong>[Rapps85]</strong> Rapps, S.; Weyuker, E. J. (1985) "Selecting software test data using data flow information".IEEE Transactions on Software Engineering, 11(4), pp. 367-375.
+                    </p>
+
+                    <p>
+                        <strong>[Foster80]</strong> Foster, K. A. (1980) "Error sensitive test case analysis (EST CA)". IEEE Transactions on Software Engineering, 6(3), pp. 258-264.
+                    </p>
+
+                    <p>
+                        <strong>[Jaffar87]</strong> Jaffar, J.; Lassez, J. L. (1987) "Constraint logic programming". Proceedings POPL’87.ACM Press, pp. 111-119. 
+                    </p>
+
+                    <p>
+                        <strong>[Ammann98]</strong> Ammann, P.; Black, P.; Majurski, W. (1998) "Using model checking to generate tests from specifications". Proceedings of the 2nd IEEE International Conference.
+                    </p>
+
+                    <p>
+                        <strong>[Goldberg89]</strong> Goldberg, D. (1989) Genetic algorithms in search, optimization, and machine learning.Addison-Wesley, Reading, MA.
+                    </p>
+
+                    <p>
+                        <strong>[Kirkpatrick83]</strong> Kirkpatrick, S.; Gelatt, C. D.; Vecchi, M. P. (1983) "Optimization by simulated annealing".Science 220(4598), pp. 671-680
+                    </p>
+
+                    <p>
+                        <strong>[Glover00]</strong> Glover, F.; Laguna, M.; Martí, R. (2000) "Fundamentals of Scatter Search and Path Relinking". Control and Cybernetics 39(3), pp. 653-684.
+                    </p>
+
+                    <p>
+                        <strong>[Monin03]</strong> Monin, F. (2003). Understanding formal methods. New York: Springer.
+                    </p>
+
+                    <p>
+                        <strong>[Spivey88]</strong> Spivey, J.M. (1988). Introducing Z: a Specification Language and its Formal Semantics. Cambridge University Press, New York.
+                    </p>
+
+                    <p>
+                        <strong>[Hoare85]</strong> Hoare, C.A.R. (1985). Communicating Sequential Processes. Prentice-Hall International, Englewood Cliffs, NJ.
+                    </p>
+
+                    <p>
+                        <strong>[Milner80]</strong> Milner, A. (1980). A Calculus of Communicating Systems, Vol. 92 of Lecture Notes in Computer Science. Springer-Verlag.
+                    </p>
+
+                    <p>
+                        <strong>[Harel90]</strong> Harel, Z., Kurshan, R. P. (1990). Software for analytical development of communications protocols. AT&amp;T Bell Lab. Tech. J. 69, 1 (Jan.–Feb.), 45–59.
+                    </p>
+
+                    <p>
+                        <strong>[Pnueli81]</strong> Pnueli, A. (1981). A temporal logic of concurrent programs. Theor. Comput. Sci. 13, 45–60.
+                    </p>
+
+                    <p>
+                        <strong>[Lynch87]</strong> Lynch, N., Tuttle, M. (1987). Hierarchical correctness proofs for distributed algorithms. Tech. Rep. (April), MIT Laboratory for Computer Science, Cambridge, MA.
+                    </p>
+
+                    <p>
+                        <strong>[Nielsen89]</strong> Nielsen, M., Havelund, K., Wagner, K., George, C. (1989). The RAISE language, method and tools. Formal Aspects Comput. 1, 85–114.
+                    </p>
+
+                    <p>
+                        <strong>[Fernández12]</strong> Fernández, V. Blog de V. Javier Fernández (2012). Desarrollo Ágil con Scrum y TDD.
+                    </p>
+                </div>
+
+            </div>
+        </div> <!-- /container -->
+    </h:body>
+</html>
+

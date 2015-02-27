@@ -41,24 +41,17 @@
                     </div>
                     <div class="navbar-collapse collapse navbar-right" id="navbar-collapse-mobile">
                         <ul class="nav navbar-nav navbar-nav_my">
-                            <li class="active_my"><a >Home</a></li>
+                            <li><h:link outcome="index">Home</h:link></li>
                             <li><h:link outcome="about">Sobre el proyecto</h:link></li>
-                            <li><h:link outcome="contact">Contacto</h:link></li>
+                            <li class="active_my"><a>Contacto</a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div><!--/.container-fluid -->
             </div>
 
             <div >
-                <div class="jumbotron" style="text-align: center; margin-top: 30px;">
-                    <h1>Bienvenido/a</h1>
-                    <p class="lead">Este es un software desarrollado como resultado de un proyecto de investigación del Laboratorio de Auditoria y Seguridad en TIC's de la Universidad Tecnológica Nacional Facultad Regional Mendoza.</p>
-                    <p>
-                        <h:form>
-                            <h:link  class="btn btn-lg btn-success" outcome="#{fileBean.start()}">Comenzar</h:link>
-                        </h:form>
-                    </p>
-                </div>
+                
+                
 
                 <div class="navbar-fixed-bottom hidden-xs" style="border-top: solid lightgray 1px; padding-top: 10px; background: white">
                     <p style="padding-left: 30px; color: gray">Javier Hernán Caballero García</p>

@@ -60,30 +60,39 @@
                     <c:if  test="#{primero_en_profundidad_bean.algoritmo.size() > 1}" ><h3><small>&laquo; Fueron encontrados #{primero_en_profundidad_bean.algoritmo.size()} caminos &raquo;</small></h3></c:if>
                     <c:if  test="#{primero_en_profundidad_bean.algoritmo.size() == 1}"><h3><small>&laquo; Fue encontrado #{primero_en_profundidad_bean.algoritmo.size()} camino &raquo;</small></h3></c:if>
                 </div>
-                <c:forEach var="camino" items="#{primero_en_profundidad_bean.algoritmo}">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Camino Número: #{primero_en_profundidad_bean.algoritmo.indexOf(camino) + 1}</h3>
-                        </div>
-                        <div class="panel-body">
-                            <ul>
-                                <c:forEach var="nodo" items="#{camino}">
-                                    <li>
-                                        <strong>Nodo Id #{nodo.id}:</strong> 
-                                        <pre>#{nodo.texto}</pre>
-                                    </li>
-                                </c:forEach>
-                            </ul>
-                            <div class="row">
-                                <h:form>
-                                    <h:link class="btn btn-default col-lg-3 col-lg-offset-2 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1 col-xs-10 col-xs-offset-1" style="margin-top: 10px;"  outcome="primero_en_profundidad/diagrama_flujo.xhtml">Ver Diagrama de Flujo</h:link>
-                                    <h:commandLink action="#{primero_en_profundidad_bean.verCamino_alternativo(primero_en_profundidad_bean.algoritmo.indexOf(camino))}" class="btn btn-default col-lg-3 col-lg-offset-2 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1 col-xs-10 col-xs-offset-1" style="margin-top: 10px;">Ver Grafo de Contról de Flujo</h:commandLink>
-                                </h:form>
-                            </div>
 
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+                    <c:forEach var="camino" items="#{primero_en_profundidad_bean.algoritmo}">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading" role="tab" id="heading#{primero_en_profundidad_bean.algoritmo.indexOf(camino) + 1}">
+                                <h3 class="panel-title">
+                                    <a class="out_underline" data-toggle="collapse" data-parent="#accordion" href="#collapse#{primero_en_profundidad_bean.algoritmo.indexOf(camino) + 1}" aria-expanded="false" aria-controls="collapse#{primero_en_profundidad_bean.algoritmo.indexOf(camino) + 1}">
+                                        Camino Número: #{primero_en_profundidad_bean.algoritmo.indexOf(camino) + 1}
+                                    </a>
+                                </h3>
+                            </div>
+                            <div id="collapse#{primero_en_profundidad_bean.algoritmo.indexOf(camino) + 1}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading#{primero_en_profundidad_bean.algoritmo.indexOf(camino) + 1}">
+                                <div class="panel-body">
+                                    <ul>
+                                        <c:forEach var="nodo" items="#{camino}">
+                                            <li>
+                                                <strong>Nodo Id #{nodo.id}:</strong> 
+                                                <pre>#{nodo.texto}</pre>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
+                                    <div class="row">
+                                        <h:form>
+                                            <h:link class="btn btn-default col-lg-3 col-lg-offset-2 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1 col-xs-10 col-xs-offset-1" style="margin-top: 10px;"  outcome="primero_en_profundidad/diagrama_flujo.xhtml">Ver Diagrama de Flujo</h:link>
+                                            <h:commandLink action="#{primero_en_profundidad_bean.verCamino_alternativo(primero_en_profundidad_bean.algoritmo.indexOf(camino))}" class="btn btn-default col-lg-3 col-lg-offset-2 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1 col-xs-10 col-xs-offset-1" style="margin-top: 10px;">Ver Grafo de Contról de Flujo</h:commandLink>
+                                        </h:form>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </c:forEach>
+                    </c:forEach>
+                </div>
             </div>
 
         </div>

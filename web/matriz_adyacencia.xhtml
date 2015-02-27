@@ -48,7 +48,6 @@
                         <ul class="nav navbar-nav">
                             <li><a href="./index.xhtml">Home</a></li>
                             <li><a href="./faces/select_proyecto.xhtml">Codigo Fuente</a></li>
-                            <li><a href="./grafo_flujo.xhtml">Grafo de Contról de Flujo</a></li>  
                             <li class="active" style="cursor:pointer"><a >Matriz Adyacencia</a></li>  
                         </ul>
 
@@ -75,6 +74,21 @@
                         </c:forEach>
                     </tbody>
                 </table>
+            </div>
+            <div class="menu-lateral">
+                <h2>Referencias</h2>
+                <div class="divisor"></div>
+
+                <ul>
+                    <c:forEach var="nodo" items="#{grafo_flujo_bean.diagrama_ordenado}">
+                        <li>
+                            <strong>Nodo Id #{nodo.id}:</strong> 
+                            <pre>#{nodo.texto}</pre>
+                        </li>
+                    </c:forEach>
+                </ul>
+
+                <div class="pestaña" data-toggle="tooltip" data-placement="left" title="Referencias" >&laquo;</div>
             </div>
         </div>
 

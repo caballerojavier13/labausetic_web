@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Testing Formal</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"></meta>
@@ -78,11 +79,15 @@
                         <h:link class="btn btn-primary btn-block" outcome="grafo_flujo">Grafo de Control de Flujo</h:link>
                     </div>
                     <div style="position: absolute; top: 120px; left: 5%; width: 90%; ">
-                        <h:link class="btn btn-primary btn-block" outcome="complejidad_ciclomatica">Complejidad Ciclomática</h:link>
+                        <h:link class="btn btn-primary btn-block" outcome="matriz_adyacencia" >Matriz de Adyacencia</h:link>
                     </div>
                     <div style="position: absolute; top: 170px; left: 5%; width: 90%; ">
                         <h:link class="btn btn-primary btn-block" style="font-size: 13px;" outcome="#{primero_en_profundidad_bean.start()}" >Algoritmo: "Primero en Profundidad"</h:link>
                     </div>
+                    <div style="position: absolute; top: 220px; left: 5%; width: 90%; ">
+                        <input class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal_complejidad" type="button" value="Complejidad Ciclomática" />
+                    </div>
+
                 </div>
                 <nav class="navbar navbar-default navbar-fixed-bottom visible-xs visible-sm" role="navigation">
                     <div class="container-fluid">
@@ -103,6 +108,22 @@
 
             </h:form>
         </div>
+        <div class="modal fade" id="modal_complejidad" tabindex="1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Complejidad Ciclomática</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>La complejidad ciclomática del método seleccionado es de: <span class="valor_complejidad ">#{complejidad_ciclomatica_bean.complejidad}</span></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
         <script type="text/javascript" src="#{request.contextPath}/js/privated/select_proyecto.js" ></script> 
     </h:body>
 </html>

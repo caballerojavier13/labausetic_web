@@ -420,17 +420,17 @@ public class Statements {
                     n1.setTexto(((DoStmt) s).getCondition().toString());
                     n1.addSiguiente(fin);
                     Id++;
-                    resultado.add(n1);
-                    nodos = getNodos(((DoStmt) s).getBody(), fin, Id);
+
+                    nodos = getNodos(((DoStmt) s).getBody(), n1, Id);
                     if (nodos.size() > 0) {
                         n1.addSiguiente(nodos.get(0));
                         for (Nodo nodo : nodos) {
                             resultado.add(nodo);
                         }
                     }
-
+                    resultado.add(n1);
                 } catch (Exception e) {
-                    e.printStackTrace();
+
                 }
                 break;
             case ForStmt:
@@ -487,48 +487,47 @@ public class Statements {
 
                 break;
             case IfStmt:
-                
-                    n1 = new Nodo(Id);
 
-                    n1.setTexto(((IfStmt) s).getCondition().toString().trim());
-                    
-                    Id++;
-                    resultado.add(n1);
+                n1 = new Nodo(Id);
 
-                    nodos = getNodos(((IfStmt) s).getThenStmt(), fin, Id);
-                    if (nodos.size() > 0) {
-                        n1.addSiguiente(nodos.get(0));
-                        for (Nodo nodo : nodos) {
-                            resultado.add(nodo);
-                            Id++;
-                        }
-                    } else {
-                        n2 = new Nodo(Id);
-                        n2.setTexto("//Then Vacio");
-                        n2.addSiguiente(fin);
+                n1.setTexto(((IfStmt) s).getCondition().toString().trim());
 
-                        n1.addSiguiente(n2);
+                Id++;
+                resultado.add(n1);
+
+                nodos = getNodos(((IfStmt) s).getThenStmt(), fin, Id);
+                if (nodos.size() > 0) {
+                    n1.addSiguiente(nodos.get(0));
+                    for (Nodo nodo : nodos) {
+                        resultado.add(nodo);
+                        Id++;
                     }
+                } else {
+                    n2 = new Nodo(Id);
+                    n2.setTexto("//Then Vacio");
+                    n2.addSiguiente(fin);
 
-                    nodos = getNodos(((IfStmt) s).getElseStmt(), fin, Id);
-                    if (nodos.size() > 0) {
+                    n1.addSiguiente(n2);
+                }
 
-                        n1.addSiguiente(nodos.get(0));
-                        for (Nodo nodo : nodos) {
-                            resultado.add(nodo);
-                            Id++;
-                        }
-                    } else {
-                        n1.addSiguiente(fin);
+                nodos = getNodos(((IfStmt) s).getElseStmt(), fin, Id);
+                if (nodos.size() > 0) {
+
+                    n1.addSiguiente(nodos.get(0));
+                    for (Nodo nodo : nodos) {
+                        resultado.add(nodo);
+                        Id++;
                     }
-                    
+                } else {
+                    n1.addSiguiente(fin);
+                }
+
                 break;
             case ReturnStmt:
 
                 n1 = new Nodo(Id);
                 n1.setTexto("RETURN");
                 n1.setRetorno(true);
-
 
                 n1.addSiguiente(fin);
 
@@ -548,7 +547,6 @@ public class Statements {
             case ThrowStmt:
                 n1 = new Nodo(Id);
                 n1.setTexto(((ThrowStmt) s).getExpr().toString());
-
 
                 n1.addSiguiente(fin);
 
@@ -628,7 +626,7 @@ public class Statements {
                 try {
                     n1 = new Nodo(Id);
                     n1.setTexto(((WhileStmt) s).getCondition().toString());
-                                        
+
                     n1.addSiguiente(fin);
                     Id++;
 
@@ -682,6 +680,7 @@ public class Statements {
         }
         return resultado;
     }
+
     private static List<Nodo> reverseNodos(List<Nodo> nodos) {
         List<Nodo> resultado = new ArrayList();
 
@@ -714,12 +713,12 @@ public class Statements {
     private static List<Nodo> getNodosSwitch(SwitchStmt s, Nodo fin, int Id) {
         List<Nodo> resultado = new ArrayList();
         List<SwitchEntryStmt> entries = s.getEntries();
-        
+
         Nodo primerNodo = null;
         try {
             primerNodo = new Nodo(Id);
             primerNodo.setTexto(s.getSelector().toString());
-            Id ++;
+            Id++;
             for (int i = entries.size() - 1; i > -1; i--) {
 
                 SwitchEntryStmt switchEntryStmt = entries.get(i);
@@ -735,7 +734,6 @@ public class Statements {
                 }
                 resultado.add(label);
                 primerNodo.addSiguiente(label);
-                
 
                 Id++;
 
@@ -743,15 +741,13 @@ public class Statements {
 
                 List<Statement> stmts = switchEntryStmt.getStmts();
 
-                
                 Nodo finTemp = fin;
                 for (int j = stmts.size() - 1; j > -1; j--) {
                     List<Nodo> nodos = getNodos(stmts.get(j), finTemp, Id);
-                    
+
                     if (nodos.size() > 0) {
                         finTemp = nodos.get(0);
-                        
-                        
+
                         for (Nodo nodo : nodos) {
                             resultado.add(nodo);
                             Id++;
@@ -787,7 +783,7 @@ public class Statements {
     }
 
     private static void addNullSiguiente(List<Nodo> nodos, Nodo fin) {
-        for (Nodo nodo : nodos) { 
+        for (Nodo nodo : nodos) {
             if (nodo.getSiguiente().size() < 1) {
                 nodo.addSiguiente(fin);
             }

@@ -27,14 +27,14 @@
         <li data-jstree='{"opened":true,"selected":true}'>
           <h:commandLink action="#{fileBean.mostrarClase()}" >
             #{fileBean.clase.nombre}
-            <f:ajax event="click" render="codigo_fuente" />
+            <f:ajax event="click" render="@all" />
           </h:commandLink>
           <ul>
             <c:forEach var="item" items="#{fileBean.metodos}">
               <li data-jstree='{"icon":"./img/java_icon.png"}' >
                 <h:commandLink >
                   #{item.nombre}
-                    <f:ajax event="click" listener="#{fileBean.mostrarMetodo(item.indice)}" render="codigo_fuente" />
+                    <f:ajax event="click" listener="#{fileBean.mostrarMetodo(item.indice)}" render="@all" />
                 </h:commandLink>
               </li>
             </c:forEach>

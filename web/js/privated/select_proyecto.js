@@ -9,7 +9,6 @@ var mobile_view = false;
     });
 
 $(function () {
-
     if ($(window).width() > 991) {
         mobile_view = false;
     } else {
@@ -27,6 +26,9 @@ $(function () {
             }
         }
     });
+    if($("#modal_complejidad .valor_complejidad").text() == 0){
+        $("#modal_complejidad .modal-body").text("Debe seleccionar un método primero.");
+    }
 });
 
 $(function () {

@@ -42,7 +42,6 @@ public class Primero_en_profundidad_bean {
             refMetodo = ((FileBean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("fileBean")).getRefSelectedMetodo();
             List<Nodo> grafo_temp = new GeneradorGrafoFlujo().parseBody(refMetodo.getBody().getBody());
             for (int i = 0; i < grafo_temp.size(); i++) {
-                //System.out.println(grafo_temp.get(i).getId());
                 grafo.add(new NodoAlgoritmo(grafo_temp.get(i)));
             }
             algoritmo = find_caminos_alternativos();
@@ -133,6 +132,17 @@ public class Primero_en_profundidad_bean {
 
     public List<List<Nodo>> getAlgoritmo() {
         return algoritmo;
+    }
+    
+    public boolean inAlgoritmoActual(int Id) {
+        boolean Resultado = false;
+        for(int  i=0; i< algoritmo.get(camino_seleccionado).size(); i++){
+            if(algoritmo.get(camino_seleccionado).get(i).getId() == Id){
+                Resultado = true;
+                break;
+            }
+        }
+        return Resultado;
     }
 
     public void ejecutarAlgoritmo() {
@@ -236,7 +246,7 @@ public class Primero_en_profundidad_bean {
     public int getCamino_seleccionado() {
         return camino_seleccionado;
     }
-
+    
     public void setCamino_seleccionado(int camino_seleccionado) {
         this.camino_seleccionado = camino_seleccionado;
     }

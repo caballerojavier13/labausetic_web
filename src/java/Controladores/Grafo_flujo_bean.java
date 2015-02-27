@@ -36,21 +36,25 @@ public class Grafo_flujo_bean {
     public Grafo_flujo_bean() {
         try {
 
-            refMetodo = ((FileBean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("fileBean")).getRefSelectedMetodo();
-
-            BlockStmt body = refMetodo.getBody().getBody();
-
-            diagrama = new GeneradorGrafoFlujo().parseBody(body);
-
-            ParseSentencias = new GeneradorGrafoFlujo().ParseSentencias(diagrama);
-
-            diagrama_ordenado = this.ordernarNodos(this.diagrama);
+            optenerDiagrama();
 
         } catch (Exception e) {
 
             new Redirector().RedireccionarHome();
 
         }
+    }
+
+    public void optenerDiagrama() {
+        refMetodo = ((FileBean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("fileBean")).getRefSelectedMetodo();
+
+        BlockStmt body = refMetodo.getBody().getBody();
+
+        diagrama = new GeneradorGrafoFlujo().parseBody(body);
+
+        ParseSentencias = new GeneradorGrafoFlujo().ParseSentencias(diagrama);
+
+        diagrama_ordenado = this.ordernarNodos(this.diagrama);
     }
 
     public Metodo getRefMetodo() {

@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 
 /**
  *
@@ -33,9 +32,8 @@ public class MatrizAdjunta {
     
     public List<Nodo> getNodos(){
         if(getGrafo){
-            Nodos = GeneradorGrafoFlujo.getGrafo();
+            Nodos = new Grafo_flujo_bean().getDiagrama_ordenado();
             
-            Nodos = ordernarNodos(Nodos);
             getGrafo = false;
         }
         return  Nodos;
