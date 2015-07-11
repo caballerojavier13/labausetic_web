@@ -6,10 +6,15 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
   <div>
     <div class="fila" style="width: 90%; left: 5%; z-index: 2; ">
-      <h:inputFile id="file" required="true" value="#{fileBean.archivoNombre}" class="filestyle" >
+      <h:inputFile id="file" required="true" value="#{fileBean.archivoNombre}" class="filestyle" >  
           <f:ajax event="change" listener="#{fileBean.subirArchivo}" />
         
       </h:inputFile>
+        <script type="text/javascript" >
+            if( navigator.userAgent.match( /iPhone/i ) ) {
+              document.getElementById("file").removeAttribute("class");
+            }
+        </script>
       <h:commandButton value="Subir"
                        class="btn btn-primary btn-block"
                        style="margin-top: 5px;margin-bottom: 5px;">
